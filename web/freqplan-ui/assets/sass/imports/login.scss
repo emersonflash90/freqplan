@@ -1,0 +1,18 @@
+@import "imports/variables.scss";
+.ui.middle.grid.login_page{
+    
+    .ui.large.form{
+        .ui.stacked.segment{
+            box-shadow: none;
+            border: none;
+            background: transparent;
+            .ui.submit.button{
+                margin-right: 100px;
+            }
+            a.reset_password{
+                color: $BlackColor!important;
+                font-weight: bold;
+            }
+        }
+    }
+}

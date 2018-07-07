@@ -1,0 +1,112 @@
+@media only screen and (max-width: 767px) {
+  /* line 3, ../../sass/imports/content.scss */
+  .ui.container.main_container {
+    height: 409px !important;
+  }
+
+  /* line 7, ../../sass/imports/content.scss */
+  .ui.container.main_container .ui.right.floated.inverted.segment {
+    display: none;
+  }
+}
+/* line 13, ../../sass/imports/content.scss */
+.ui.container.segment.main_container {
+  box-shadow: none;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  height: 40.3em;
+}
+/* line 19, ../../sass/imports/content.scss */
+.ui.container.segment.main_container img.fluid.image {
+  height: 100%;
+}
+/* line 22, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.left.floated.inverted.segment {
+  position: absolute;
+  top: 0px;
+  margin-left: 0em;
+  background: transparent;
+}
+/* line 27, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu {
+  background: rgba(0, 0, 0, 0.63);
+  border-radius: 0;
+  width: 20rem;
+}
+/* line 32, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a {
+  font-weight: bold;
+  color: #fff;
+  font-size: 14px;
+}
+/* line 36, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a:hover {
+  color: #fdca00;
+  text-decoration: underline;
+}
+/* line 43, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item .header {
+  /*color: $YellowMenuItem;*/
+  font-size: 14px;
+}
+/* line 47, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item:before {
+  /*background: none;*/
+}
+/* line 50, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a.item {
+  font-weight: bold;
+  color: #fff;
+  font-size: 12px;
+}
+/* line 54, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a.item:hover {
+  color: #fdca00;
+  text-decoration: underline;
+}
+/* line 63, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.right.floated.inverted.segment {
+  position: absolute;
+  top: 0px;
+  /*margin-right: 0em;*/
+  margin-left: 72.1%;
+  background: transparent;
+}
+/* line 69, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu {
+  background: rgba(0, 0, 0, 0.63);
+  border-radius: 0;
+  width: 17rem;
+}
+/* line 74, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a {
+  font-weight: bold;
+  color: #fff;
+  font-size: 14px;
+}
+/* line 78, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a:hover {
+  color: #fdca00;
+  text-decoration: underline;
+}
+/* line 85, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item .header {
+  color: #fdca00;
+  font-size: 14px;
+}
+/* line 89, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item:before {
+  /*background: none;*/
+}
+/* line 92, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a.item {
+  font-weight: bold;
+  color: #fff;
+  font-size: 12px;
+}
+/* line 96, ../../sass/imports/content.scss */
+.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a.item:hover {
+  color: #fdca00;
+  text-decoration: underline;
+}

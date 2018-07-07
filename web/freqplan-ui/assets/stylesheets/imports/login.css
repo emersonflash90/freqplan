@@ -1,0 +1,15 @@
+/* line 5, ../../sass/imports/login.scss */
+.ui.middle.grid.login_page .ui.large.form .ui.stacked.segment {
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+/* line 9, ../../sass/imports/login.scss */
+.ui.middle.grid.login_page .ui.large.form .ui.stacked.segment .ui.submit.button {
+  margin-right: 100px;
+}
+/* line 12, ../../sass/imports/login.scss */
+.ui.middle.grid.login_page .ui.large.form .ui.stacked.segment a.reset_password {
+  color: #262626 !important;
+  font-weight: bold;
+}

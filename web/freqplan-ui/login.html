@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About AES - AES</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
+        <!--<link rel="stylesheet" href="./semantic-ui/dist/semantic.min.css">-->
+        <link rel="stylesheet" href="assets/stylesheets/styles.css">
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <style type="text/css">
+            body {
+                background-color: #fdca00;
+            }
+            body > .grid {
+                height: 100%;
+            }
+            .image {
+                margin-top: -100px;
+            }
+            .column {
+                max-width: 450px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="ui middle aligned center aligned grid login_page">
+            <div class="column">
+                <h2 class="ui image header">
+                    <img src="assets/images/background.png" class="image">
+                    <div style="font-size: 18px;" class="content">
+                        Log-in to your account
+                    </div>
+                </h2>
+                <form class="ui large form">
+                    <div class="ui stacked segment">
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" name="email" placeholder="E-mail address">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="ui black submit button">Login</div>
+                        <a class="reset_password">Reset Password</a>
+                    </div>
+
+                    <div class="ui error message"></div>
+
+                </form>
+            </div>
+        </div>
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
+        <!--<script src="./semantic-ui/dist/semantic.min.js"></script>-->
+        <script type="text/javascript" src="assets/js/main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+@import "imports/variables.scss";
+.ui.container.footer_container{
+    .ui.inverted.mini.menu{
+        background: $BackgroundMenuColor;
+        border-radius: 0px;
+        .item{
+            color: $MenuItemColor;
+            /*font-weight: bold;*/
+            font-size: 12px;
+            border-radius: 0px;
+            &:hover{
+                background: none;
+            }
+        }
+        a.item{
+            &:hover{
+                background: none;
+                color: $YellowMenuItem;
+            }
+        }
+
+        .item.six_bar_separator{
+            padding: 0;
+            margin: 0;
+            color: #fff;
+        }
+    }
+}

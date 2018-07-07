@@ -1,0 +1,27 @@
+/* line 3, ../../sass/imports/footer.scss */
+.ui.container.footer_container .ui.inverted.mini.menu {
+  background: #262626;
+  border-radius: 0px;
+}
+/* line 6, ../../sass/imports/footer.scss */
+.ui.container.footer_container .ui.inverted.mini.menu .item {
+  color: #fff;
+  /*font-weight: bold;*/
+  font-size: 12px;
+  border-radius: 0px;
+}
+/* line 11, ../../sass/imports/footer.scss */
+.ui.container.footer_container .ui.inverted.mini.menu .item:hover {
+  background: none;
+}
+/* line 16, ../../sass/imports/footer.scss */
+.ui.container.footer_container .ui.inverted.mini.menu a.item:hover {
+  background: none;
+  color: #fdca00;
+}
+/* line 22, ../../sass/imports/footer.scss */
+.ui.container.footer_container .ui.inverted.mini.menu .item.six_bar_separator {
+  padding: 0;
+  margin: 0;
+  color: #fff;
+}

@@ -1,0 +1,104 @@
+@import "imports/variables.scss";
+@media only screen and (max-width: 767px){
+    .ui.container.main_container{
+        height: 409px!important;
+    }
+    .ui.container.main_container{
+        .ui.right.floated.inverted.segment{
+            display: none;
+        }
+    }
+
+}
+.ui.container.segment.main_container{
+    box-shadow: none;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    height: 40.3em;
+    img.fluid.image{
+        height: 100%
+    }
+    .ui.left.floated.inverted.segment{
+        position: absolute;
+        top: 0px;
+        margin-left: 0em;
+        background: transparent;
+        .inverted.vertical.menu{
+            background: rgba(0, 0, 0, 0.63);
+            border-radius: 0;
+            width: 20rem;
+            .item{
+                a{
+                    font-weight: bold;
+                    color:$MenuItemColor;
+                    font-size: 14px;
+                    &:hover{
+                        color: $YellowMenuItem;
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .item{
+                .header{
+                    /*color: $YellowMenuItem;*/
+                    font-size: 14px;
+                }
+                &:before{
+                    /*background: none;*/
+                }
+                a.item{
+                    font-weight: bold;
+                    color:$MenuItemColor;
+                    font-size: 12px;
+                    &:hover{
+                        color: $YellowMenuItem;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    .ui.right.floated.inverted.segment{
+        position: absolute;
+        top: 0px;
+        /*margin-right: 0em;*/
+        margin-left: 72.1%;
+        background: transparent;
+        .inverted.vertical.menu{
+            background: rgba(0, 0, 0, 0.63);
+            border-radius: 0;
+            width: 17rem;
+            .item{
+                a{
+                    font-weight: bold;
+                    color:$MenuItemColor;
+                    font-size: 14px;
+                    &:hover{
+                        color: $YellowMenuItem;
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .item{
+                .header{
+                    color: $YellowMenuItem;
+                    font-size: 14px;
+                }
+                &:before{
+                    /*background: none;*/
+                }
+                a.item{
+                    font-weight: bold;
+                    color:$MenuItemColor;
+                    font-size: 12px;
+                    &:hover{
+                        color: $YellowMenuItem;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,160 @@
+@import "imports/variables.scss";
+/*body{
+    background-color: #ffffff;
+}*/
+.inverted.mini.menu.top_menu{
+    height: 6em;
+    border-radius: 0px;
+    background: $BackgroundMenuColor;
+    .container{
+         width: 1220px!important;
+        .item{
+            padding-top: 0px;
+            padding-bottom: 0px;
+            img{
+                width: 10.5em;
+            }
+            &:before{
+                background: none!important;
+            }
+            &:hover{
+                background: none!important;
+            }
+        }
+        @media only screen and (max-width: 767px){
+            .toc.item{
+                display: flex;
+            }
+            .left.inverted.mini.menu{
+                display: none;
+
+            }
+        }
+        .left.inverted.mini.menu{
+            background: #741716;
+            height: 2em;
+            margin-top: 3.1em;
+        }
+        .left.inverted.mini.menu.home_left_menu{
+            .item{
+                color: $MenuItemColor;
+                font-weight: bold;
+                font-size: 14px;
+                &:hover{
+                    background: transparent!important;
+                }
+            }
+            .item.six_bar_separator{
+                color: #fff;
+                padding: 0px;
+            }
+        }
+        .right.inverted.mini.menu{
+            background: $BackgroundMenuColor;
+            @media only screen and (max-width: 767px){
+                .ui.action.input{
+                    display: none;
+                }
+            }
+            .ui.action.input{
+                input{
+                    border-radius: 0px;
+                    font-size: 12px;
+                }
+                .ui.button{
+                    border-radius: 0px;
+                    font-size: 12px;
+                }
+            }
+            .item{
+                font-weight: bold;
+                font-size: 14px;
+                &:hover{
+                    background: $YellowMenuItem!important;
+                    color: $BlackColor!important;
+                }
+            }
+            .dropdown.item{
+                .menu{
+                    border-radius: 0em;
+                    margin-top: 0em;
+                }
+                .menu>.item{
+                        font-weight: bold!important;
+                    }
+            }
+        }
+    }
+}
+
+.ui.mini.vertical.sidebar.menu {
+    width: 19rem;
+    .item{
+        font-size: 12px;
+    }
+    .active_item{
+        background: $YellowMenuItem!important;
+        color: #000;
+        a{
+            color: #000;
+            font-weight: bold;
+            &:hover{
+                color: $RedMenuBar!important;
+                text-decoration: underline;
+            }
+        }
+
+    }
+}
+
+.ui.menu>.item:first-child{
+    border-radius: 0px;
+}
+
+@media only screen and (min-width: 1200px){
+    .ui.grid.container {
+        width: 1349px!important;
+    }
+    .ui.container {
+        width: 1349px;
+        margin-left: auto!important;
+        margin-right: auto!important;
+    }
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 992px){
+    .ui.grid.container {
+        width: calc(933px + 2rem)!important;
+    }
+    .ui.container {
+        width: calc(933px + 2rem)!important;
+    }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px){
+    .ui.grid.container {
+        width: calc(723px + 2rem)!important;
+    }
+    .ui.container {
+        width: calc(723px + 2rem)!important;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    .ui.grid.container{
+        width: auto!important;
+    }
+    .ui.menu{
+        .item.six_bar_separator{
+            display: none!important;
+        }
+        .item.toc{
+            display: flex!important;
+        }
+    }
+    .ui.container{
+        width: auto!important;
+        margin-left: 0px!important;
+        margin-right: 0px!important;
+    }
+}

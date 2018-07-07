@@ -1,0 +1,460 @@
+@import "imports/variables.scss";
+@media only screen and (max-width: 767px){
+    .ui.container.page_content{
+        .row{
+            .four.wide.column{
+                display: none;
+            }
+        }
+    }
+
+}
+.ui.container.segment.page_content{
+    box-shadow: none;
+    border: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    min-height: 40.2em;
+    .row{
+        padding: 0px;
+        .twelve.wide.column{
+            /*background: #fff*/
+            padding-top:0px!important;
+            #nav_menu.ui.tiny.menu{
+                border: none;
+                /*border-right: none;*/
+                box-shadow: none;
+                border-radius: 0px;
+                margin-top: 1em;
+                a.item{
+                    color: $RedMenuBar;
+                    &:hover{
+                        text-decoration: underline;
+                        color: $YellowMenuItem;
+                    }
+                }
+                div.item{
+                    /*color: $MenuItemColor;*/
+                }
+                .item{
+                    font-weight: 700;
+                    &:hover{
+                        background: none;
+                    }
+                    &:before{
+                        background:none;
+                    }
+                }
+            }
+            .ui.card.fluid.about_aes{
+                border-radius: 0px;
+                box-shadow: none;
+                .content.card_header{
+                    border-radius: 0px!important;
+                    background-color: #741716;
+                    border: 1px solid rgb(116, 23, 22);
+                    .header{
+                        color: #ffffff;
+                        font-size: 14px;
+                    }
+                }
+                .content.card_content{
+                    .ui.list{
+                        .item{
+                            font-size: 14px;
+                        }
+                    }
+                    .ui.two.cards.cards_team{
+                        .ui.card{
+                            .content{
+                                .header{
+                                    font-size: 14px;
+                                }
+                                .description{
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+            .ui.three.cards.cards_activities_services{
+                .ui.card.fluid.activity_service{
+                    border-radius: 0px;
+                    box-shadow: none;
+                    .content.card_header{
+                        border-radius: 0px!important;
+                        background-color: #741716;
+                        border: 1px solid rgb(116, 23, 22);
+                        max-height: 55px;
+                        .header{
+                            color: #ffffff;
+                            font-size: 12px;
+                        }
+                    }
+                    .content.description{
+                        border: 1px solid rgba(34,36,38,.1);
+                        font-size: 12px;
+                    }
+                }
+            }
+            .ui.three.cards.cards_projects{
+                .ui.card.fluid.project{
+                    border-radius: 0px;
+                    box-shadow: none;
+                    .content.card_header{
+                        border-radius: 0px!important;
+                        background-color: #741716;
+                        border: 1px solid rgb(116, 23, 22);
+                        max-height: 55px;
+                        .header{
+                            color: #ffffff;
+                            font-size: 14px;
+                        }
+                    }
+                    .content.description{
+                        border: 1px solid rgba(34,36,38,.1);
+                        font-size: 12px;
+                    }
+                }
+            }
+            .ui.three.cards.cards_business_areas{
+                .ui.card.fluid.business_area{
+                    border-radius: 0px;
+                    .image{
+                        border-radius: 0px!important;
+                    }
+                    .content{
+                        .header{
+                            font-size: 16px;
+                        }
+                        .description{
+                            font-size: 12px;
+                        }
+                    }
+
+                }
+            }
+
+            .ui.grid.segments_text_hover_grid{
+                .column{
+                    /*                    &:hover .segment_text_hover,
+                                            &:focus .segment_text_hover,
+                                            &:active .segment_text_hover {
+                                            -webkit-transform: scale(1.12);
+                                            -moz-transform: scale(1.12);
+                                            -ms-transform: scale(1.12);
+                                            -o-transform: scale(1.12);
+                                            transform: scale(1.12)
+                                        }*/
+                    .segment_text_hover{
+                        padding: 0px;
+                        border-radius:0px;
+
+                        .ui.left.floated.segment{                            
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;
+                            width: 100%;
+                            padding: 0px;
+                            border-radius: 0px;
+                            border:none;
+                            box-shadow: none;
+                            margin:0px;
+                            background-color: #131111ed;
+                            /*background-color: #741716e3;*/
+                            /*background-color: #020202ed;*/
+                            .ui.card{
+                                border-radius: 0px;
+                                box-shadow: none;
+                                border:none;
+                                background-color: transparent;
+                                /*                                &:before{
+                                                                    box-shadow: 0 -140px 40px -40px #000 inset;
+                                                                }*/
+                                .content{
+                                    .header{
+                                        font-size: 14px;
+                                        color: #ffffff;
+                                        /*text-transform: uppercase;*/
+                                    }
+                                    a{
+                                        &:hover{
+                                            text-decoration: underline;
+                                        }
+                                    }
+                                    .description{
+                                        font-size: 12px;
+                                        color: #ffffff;
+                                        font-weight: bold;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .ui.middle.grid.intervention_sectiors{
+                padding-top: 5%;
+                .row{
+
+                    .column.page_title{
+                        /*width: 32%!important;*/
+                        background: transparent;
+                        .ui.fluid.card{
+                            box-shadow: none;
+                            border: none;
+                            background: transparent;
+                            .content{
+                                border: none;
+                                background: transparent;
+                                /*padding: 0px;*/
+                                .ui.circular.segment{
+                                    .header{
+                                        font-size: 14px;
+                                    }
+                                    height: 12rem;
+                                    width: 12rem;
+                                }
+                            }
+                            @media only screen and (max-width: 767px){
+                                .content{
+                                    padding-left: 27%!important;
+                                }
+                            }
+                        }
+
+                    }
+
+                    .column.page_content{
+                        background: transparent;
+                        .ui.fluid.card{
+                            box-shadow: none;
+                            border: none;
+                            background: transparent;
+                            .content{
+                                border: none;
+                                background: transparent;
+                            }
+
+                        }
+
+                    }
+
+                    @media only screen and (max-width: 767px){
+                        .column{
+                            width: 100%!important;
+                        }
+                    }
+                }
+            }
+
+            .ui.middle.four.column.grid{
+                padding-top: 5%;
+                .row{
+
+                    .column{
+                        width: 32%!important;
+                        background: transparent;
+                        .ui.fluid.card{
+                            box-shadow: none;
+                            border: none;
+                            background: transparent;
+                            .content{
+                                border: none;
+                                background: transparent;
+                                /*padding: 0px;*/
+                                .ui.circular.segment{
+                                    .header{
+                                        font-size: 14px;
+                                    }
+                                    height: 12rem;
+                                    width: 12rem;
+                                }
+                            }
+                            @media only screen and (max-width: 767px){
+                                .content{
+                                    padding-left: 27%!important;
+                                }
+                            }
+                        }
+
+                    }
+
+                    @media only screen and (max-width: 767px){
+                        .column{
+                            width: 100%!important;
+                        }
+                    }
+                }
+            }
+
+            .items{
+                .item{
+                    .content{
+                        .header{
+                            font-size: 16px;
+                            color: $RedMenuBar;
+                            &:hover{
+                                color: $YellowMenuItem;
+                                text-decoration: underline;
+                            }
+                        }
+                        .description{
+                            font-size: 14px;
+                            .ui.list{
+                                .item{
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                        .extra{
+                            a{
+                                color: $RedMenuBar;
+                                &:hover, &:focus, &:active{
+                                    color: $YellowMenuItem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .angola_presentation{
+                h2{
+                    font-size: 16px!important;
+                }
+                p{
+                    font-size: 14px!important;
+                    text-align: justify;
+                }
+            }
+            .ui.card.contact_card{
+                width: 26rem;
+                .header{
+                    font-size: 14px;
+                }
+                .description{
+                    font-size: 12px;
+                    p{
+                        font-size: 12px;
+                    }
+                }
+            }
+            .ui.card.single_post{
+                box-shadow: none;
+                .header.post_title{
+                    font-size:16px; 
+                }
+                .meta{
+                    font-size: 14px;
+                    a.nav_link{
+                        font-size: 14px;
+                        color: $RedMenuBar;
+                        &:hover, &:focus, &:active{
+                            color: $YellowMenuItem;
+                        }
+                    }
+                }
+                .content{
+                    font-size: 14px;
+                    p{
+                        font-size: 14px;
+                    }
+                }
+                .content.aes_extra{
+                    font-size: 14px;
+                    a{
+                        font-size: 14px;
+                        color: $RedMenuBar;
+                        &:hover, &:focus, &:active{
+                            color: $YellowMenuItem;
+                        }
+                    }
+                }
+            }
+            .ui.three.column.grid.business_area_colums{
+                .column.business_area_column{
+                    .ui.card.business_area_card{
+                        .image{
+                            img{
+                                height: 155px;
+                                /*border-radius: 0px;*/
+                            }
+                        }
+                        .content{
+                            .header{
+                                font-size: 14px;
+                            }
+                        }                        
+                    }
+                }
+            }
+        }
+        .four.wide.column{
+            width: 20%!important;
+            padding:0px!important;
+            .ui.vertical.menu .item>i.icon {
+                float: left;
+                margin: 0px 6px 0px 0.5em;
+            }
+            .ui.vertical.menu{
+                width: 100%;
+                height: 100%;
+                border-radius: 0px;
+                background: $BackgroundMenuColor;
+                .item{
+                    font-size: 14px;
+                    font-weight: bold;
+                    a{
+                        font-weight: bold;
+                        /*color:$MenuItemColor;*/
+                        &:hover{
+                            color: $RedMenuBar!important;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+                .item:not(.no_hover){
+                    border-radius: 0px;
+                    background-image: linear-gradient(to right, $BackgroundMenuColor 50%, $YellowMenuItem 50%);
+                    background-size: 200% 100%;
+                    background-repeat: no-repeat;
+                    background-position: bottom left;
+                    /** START THE TRANSITION RULES **/
+                    -webkit-transition: all 0.25s ease-in;
+                    -moz-transition: all 0.25s ease-in;
+                    transition: all 0.25s ease-in;
+
+
+                    &:hover{
+                        -webkit-transition: all 0.25s ease-in;
+                        -moz-transition: all 0.25s ease-in;
+                        transition: all 0.25s ease-in;
+                        /** START THE FINAL STATE STYLING **/
+                        background-position: bottom right;
+                        color: $RedMenuBar;
+                        a{
+                            color: #000;
+                        }
+                    }
+                }
+
+                .active_item{
+                    background: $YellowMenuItem!important;
+                    color: #000;
+                    a{
+                        color: #000;
+                        font-weight: bold;
+                        &:hover{
+                            color: $RedMenuBar!important;
+                            text-decoration: underline;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}

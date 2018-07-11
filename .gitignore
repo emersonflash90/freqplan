@@ -14,5 +14,6 @@
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
 /vendor/
+/nbproject/
 /web/bundles/
 /web/freqplan-ui/nbproject/private/

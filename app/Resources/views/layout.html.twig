@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    {% include('sidebar.html.twig') %}
+    <div class="pusher">
+        {% include('header.html.twig') %}
+        <div class="ui divided doubling stackable grid container segment page_content">
+            <div class='row'>
+                <div class="four wide column">
+                    <div class="ui inverted vertical menu">
+                        <a class="item">
+                            <i class="map icon" ></i>
+                            <span>Map</span>
+                        </a>
+                        <a class="item active_item">
+                            <i class="" ></i>
+                            <span>Sites</span>
+                        </a>
+                        <a class="item">
+                            <i class="links icon"></i>
+                            <span>Links</span>
+                        </a>
+                        <a class="item">
+                            <i class="wifi icon"></i>
+                            Interferences
+                        </a>
+                        <a class="item" href="">
+                            <i class="wifi icon"></i>
+                            <span>
+                                CAPEX
+                            </span>
+                        </a>
+                        <a class="item" href="">
+                            <i class="wifi icon"></i>
+                            <span>
+                                OPEX
+                            </span>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="twelve wide column">
+                    {% block content %}
+
+                    {% endblock content %}
+                </div>
+
+            </div>
+        </div>
+        {% include('footer.html.twig') %}
+    </div>
+
+{% endblock body %}

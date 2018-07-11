@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+    {{ parent()}}
+    <style type="text/css">
+        body {
+            background-color: #fdca00;
+        }
+        body > .grid {
+            height: 100%;
+        }
+        .image {
+            margin-top: -100px;
+        }
+        .column {
+            max-width: 450px;
+        }
+    </style>
+{% endblock %}
+{% block title %}{% endblock %}
+
+{% block body %}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent()}}
+{% endblock %}

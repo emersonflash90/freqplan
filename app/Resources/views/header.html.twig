@@ -2,7 +2,7 @@
     <div class="ui inverted mini menu top_menu">
         <div class="ui container header_container">
             <a class="toc item" style="display: none;"><i class="large sidebar icon"></i></a>
-            <a href='index.html' class="item">
+            <a href="{{path('map_home')}}" class="item">
                 <img src="{{asset('bundles/app/images/logo.PNG')}}">
             </a>
             <!--                        <div class="ui left inverted mini menu home_left_menu">
@@ -27,10 +27,10 @@
                         <a href="#" class="item" data-value="ao" >
                             My account
                         </a>
-                        <a href="3" class="item" data-value="fr">
+                        <a href="{{path('register_new_user_get')}}" class="item" data-value="fr">
                             New user
                         </a>
-                        <a href="#" class="item" data-value="fr">
+                        <a href="{{ path('fos_user_security_logout') }}" class="item" data-value="fr">
                             log out
                         </a>
                     </div>

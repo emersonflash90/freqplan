@@ -19,7 +19,7 @@ framework:
     form: ~
     csrf_protection: ~
     validation: { enable_annotations: true }
-    #serializer: { enable_annotations: true }
+    serializer: { enable_annotations: true }
     default_locale: '%locale%'
     trusted_hosts: ~
     session:
@@ -85,3 +85,26 @@ fos_user:
     profile:
         form:
             type: AppBundle\Form\ProfileType
+            
+            
+# FOSRestBundle Configuration
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: 
+        rules:
+            #- { path: '^/', priorities: ['json'], fallback_format: 'json'}
+    view:
+        view_response_listener: true
+        formats:
+            xml: true
+            json : true
+            html: true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        include_format: false

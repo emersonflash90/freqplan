@@ -1,0 +1,60 @@
+{% extends "layout.html.twig" %}
+{% trans_default_domain 'AppBundle' %}
+{% block title %}Accueil{% endblock %}
+{% block content %}
+    <div id="nav_menu" class="ui tiny menu">
+        <div class="left menu">
+            <a class="item" href="">Home</a>
+            <div class="item" style="padding-left: 0; padding-right: 0;"><i class="small right chevron icon divider"></i></div>
+            <div class="item">Add new user</div>
+        </div>
+    </div>
+    <div class='ui centered card' style="box-shadow: none; width: 50%">
+        {% for flash_message in app.session.flashBag.get('error') %}
+            <div  class="ui error message">
+                <i class="remove circle icon"></i>
+                <span>{{ flash_message }}</span>
+                <i class="close icon"></i>
+            </div>
+        {% endfor %}
+        {% for flash_message in app.session.flashBag.get('success') %}
+            <div  class="ui success message">
+                <i class="remove circle icon"></i>
+                <span>{{ flash_message }}</span>
+                <i class="close icon"></i>
+            </div>
+        {% endfor %}
+        {{ form_start(form, {'method': 'POST', 'action': path('register_new_user_post'), 'attr': {'class': 'ui form', 'id': 'register_form'} }) }}
+        <div class="field">
+            <label>First name</label>
+            {{ form_widget(form.firstname,{'attr':{'placeholder': "Enter your first name", 'data-validate': 'firstname'}})}}
+        </div>
+        <div class="field">
+            <label>Last name</label>
+            {{ form_widget(form.lastname,{'attr':{'placeholder': "Enter your last name", 'data-validate': 'lastname'}})}}
+        </div>
+        <div class="field">
+            <label>Username</label>
+            {{ form_widget(form.username,{'attr':{'placeholder':'Pick a username', 'data-validate': 'username'}})}}
+        </div>
+        <div class="field">
+            <label>Email address</label>
+            {{ form_widget(form.email,{'attr':{'placeholder':'you@example.com', 'data-validate': 'email'}})}}
+        </div>
+        <div class="field">
+            <label>Password</label>
+            {{ form_widget(form.plainPassword.first,{'attr':{'placeholder':'Create a password', 'data-validate': 'password'}})}}
+        </div>
+
+        <div class="field">
+            <label>Confirm password</label>
+            {{ form_widget(form.plainPassword.second,{'attr':{'placeholder':'Confirm a password', 'data-validate': 'passwordConfirm'}})}}
+        </div>
+
+        <div class="field">
+            {{form_rest(form)}}
+        </div>
+        <button id="submit_register_form" class="ui yellow button" type="submit">Create an account</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

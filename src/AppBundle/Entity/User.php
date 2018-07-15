@@ -11,7 +11,7 @@ use FOS\UserBundle\Model\User as BaseUser;
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser

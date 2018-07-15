@@ -1,0 +1,158 @@
+{% extends "layout.html.twig" %}
+{% trans_default_domain 'AppBundle' %}
+{% block title %}Sites{% endblock %}
+{% block active_item_sites %}active_item{% endblock %}
+{% block content %}
+    <div id="nav_menu" class="ui tiny menu">
+        <div class="left menu">
+            <a class="item" href="">Home</a>
+            <div class="item" style="padding-left: 0; padding-right: 0;"><i class="small right chevron icon divider"></i></div>
+            <div class="item">Sites</div>
+        </div>
+    </div>
+    <div class='ui fluid card' style="box-shadow: none;">
+        <table class="ui celled small table">
+            <thead>
+                <tr><th>T.Number</th>
+                    <th>Name</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>City</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr></thead>
+            <tbody>
+                <tr id="site_1">
+                    <td>1</td>
+                    <td>Mballa 2</td>
+                    <td>9.2</td>
+                    <td>8.5</td>
+                    <td>Yaoundé</td>
+                    <td>xxx</td>
+                    <td>
+                        <div class="ui pagination mini menu">
+                            <a class="icon item" onclick="edit_site(1);">
+                                <i class="blue write icon"></i>
+                            </a>
+                            <a class="icon item">
+                                <i class="red trash icon"></i>
+                            </a>
+                        </div>
+
+                    </td>
+                </tr>
+                <form id="form_edit_site_1" >
+                    <tr class="ui mini form" id="edit_site_1" style="display: none;">
+                        <td><div class="wide field"><input type="text" name="t_number" placeholder="T Number"  value="1"></div></td>
+                        <td><input type="text" name="nom" placeholder="Name" value="Mballa 2"></td>
+                        <td><input type="text" name="latitude" placeholder="Latitude" value="9.2"></td>
+                        <td><input type="text" name="longitude" placeholder="Longitude" value="8.5"></td>
+                        <td><input type="text" name="city" placeholder="City" value="Yaoundé"></td>
+                        <td><input type="text" name="type" placeholder="Type" value="xxx"></td>
+                        <td>
+                            <button id="edit_site_btn" class="ui primary mini icon button" data-tooltip="Edit" data-position="bottom center" data-inverted="" data-variation="mini" href=""><i class="save icon"></i></button>
+                            <a id="cancel_edit_site_btn" onclick="cancel_edit_site(1);" class="ui red mini icon button" data-tooltip="Cancel" data-position="bottom center" data-inverted="" data-variation="mini"><i class="cancel icon"></i></a>
+                        </td>
+                    </tr>
+                </form>
+                <tr id="site_2">
+                    <td>2</td>
+                    <td>Cradat</td>
+                    <td>9.2</td>
+                    <td>8.5</td>
+                    <td>Yaoundé</td>
+                    <td>xxx</td>
+                    <td>
+                        <div class="ui pagination mini menu">
+                            <a class="icon item" onclick="edit_site(2);">
+                                <i class="blue write icon"></i>
+                            </a>
+                            <a class="icon item">
+                                <i class="red trash icon"></i>
+                            </a>
+                        </div>
+
+                    </td>
+                </tr>
+                <form id="form_edit_site_2" >
+                    <tr class="ui mini form" id="edit_site_2" style="display: none;">
+                         <td><div class="wide field"><input type="text" name="t_number" placeholder="T Number"  value="2"></div></td>
+                        <td><input type="text" name="nom" placeholder="Name" value="Mballa 2"></td>
+                        <td><input type="text" name="latitude" placeholder="Latitude" value="9.2"></td>
+                        <td><input type="text" name="longitude" placeholder="Longitude" value="8.5"></td>
+                        <td><input type="text" name="city" placeholder="City" value="Yaoundé"></td>
+                        <td><input type="text" name="type" placeholder="Type" value="xxx"></td>
+                        <td>
+                            <button id="edit_site_btn" class="ui primary mini icon button" data-tooltip="Edit" data-position="bottom center" data-inverted="" data-variation="mini" href=""><i class="save icon"></i></button>
+                            <a id="cancel_edit_site_btn" onclick="cancel_edit_site(2);" class="ui red mini icon button" data-tooltip="Cancel" data-position="bottom center" data-inverted="" data-variation="mini"><i class="cancel icon"></i></a>
+                        </td>
+                    </tr>
+                </form>
+                <tr id="site_3">
+                    <td>1</td>
+                    <td>Effoulan</td>
+                    <td>9.2</td>
+                    <td>8.5</td>
+                    <td>Yaoundé</td>
+                    <td>xxx</td>
+                    <td>
+                        <div class="ui pagination mini menu">
+                            <a class="icon item" onclick="edit_site(3);">
+                                <i class="blue write icon"></i>
+                            </a>
+                            <a class="icon item">
+                                <i class="red trash icon"></i>
+                            </a>
+                        </div>
+
+                    </td>
+                </tr>
+                <form id="form_edit_site_3" >
+                    <tr class="ui mini form" id="edit_site_3" style="display: none;">
+                         <td><div class="wide field"><input type="text" name="t_number" placeholder="T Number"  value="3"></div></td>
+                        <td><input type="text" name="nom" placeholder="Name" value="Mballa 2"></td>
+                        <td><input type="text" name="latitude" placeholder="Latitude" value="9.2"></td>
+                        <td><input type="text" name="longitude" placeholder="Longitude" value="8.5"></td>
+                        <td><input type="text" name="city" placeholder="City" value="Yaoundé"></td>
+                        <td><input type="text" name="type" placeholder="Type" value="xxx"></td>
+                        <td>
+                            <button id="edit_site_btn" class="ui primary mini icon button" data-tooltip="Edit" data-position="bottom center" data-inverted="" data-variation="mini" href=""><i class="save icon"></i></button>
+                            <a id="cancel_edit_site_btn" onclick="cancel_edit_site(3);" class="ui red mini icon button" data-tooltip="Cancel" data-position="bottom center" data-inverted="" data-variation="mini"><i class="cancel icon"></i></a>
+                        </td>
+                    </tr>
+                </form>
+            <form id="form_add_site" >
+                <tr class="ui mini form" id="add_site" style="display: none;">
+                    <td><div class="wide field"><input type="text" name="t_number" placeholder="T Number" ></div></td>
+                    <td><input type="text" name="nom" placeholder="Name" ></td>
+                    <td><input type="text" name="latitude" placeholder="Latitude" ></td>
+                    <td><input type="text" name="longitude" placeholder="Longitude" ></td>
+                    <td><input type="text" name="city" placeholder="City" ></td>
+                    <td><input type="text" name="type" placeholder="Type" ></td>
+                    <td>
+                        <button id="save_site_btn" class="ui primary mini icon button" data-tooltip="Save" data-position="bottom center" data-inverted="" data-variation="mini" ><i class="save icon"></i></button>
+                        <a id="cancel_save_site_btn" class="ui red mini icon button" data-tooltip="Cancel" data-position="bottom center" data-inverted="" data-variation="mini"><i class="cancel icon"></i></a>
+                    </td>
+                </tr>
+            </form>
+            </tbody>
+            <tfoot>
+                <tr><th colspan="7">
+                        {#<div class="ui left floated pagination mini menu">
+                            <a class="icon item">
+                                <i class="left chevron icon"></i>
+                            </a>
+                            <a class="item">1</a>
+                            <a class="item">2</a>
+                            <a class="item">3</a>
+                            <a class="item">4</a>
+                            <a class="icon item">
+                                <i class="right chevron icon"></i>
+                            </a>
+                        </div>#}
+                        <button id="add_site_btn" class="ui right floated green mini icon button" data-tooltip="Add a site" data-position="bottom center" data-inverted="" data-variation="mini"><i class='plus icon'></i></button>
+                    </th>
+                </tr></tfoot>
+        </table>
+    </div>
+{% endblock %}

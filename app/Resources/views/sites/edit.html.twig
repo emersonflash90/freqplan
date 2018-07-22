@@ -1,0 +1,163 @@
+{% import _self as forms %}
+<div class="ui small modal" id="edit_site">
+    <i class="close icon"></i>
+    <div class="header">
+        Update a site
+    </div>
+    <div class="content">
+        {{ form_start(form, {'method': 'PUT', 'action':  path('site_update',{'id': site.id}), 'attr': {'class': 'ui mini form', 'id': 'edit_site_form'} }) }}
+        <h4 class="ui dividing header" style="margin-top: 0px;">Site informations</h4>
+        <div class="two fields">
+            <div class="ui field">
+                {{ form_label(form.tNumber,"T Number") }}
+                {{ form_widget(form.tNumber,{'attr':{'placeholder':"T Number", 'data-validate': 't-number'}})}}
+            </div>
+            <div class="ui field">
+                {{ form_label(form.siteName,"Nom") }}
+                {{ form_widget(form.siteName,{'attr':{'placeholder':"Site name", 'data-validate': 'site-name'}})}}
+            </div>
+        </div>
+
+        <div class="two fields">
+            <div class="ui field">
+                {{ form_label(form.latitude,"Latitude") }}
+                {{ form_widget(form.latitude,{'attr':{'placeholder':"Latitude", 'data-validate': 'site-latitude'}})}}
+            </div>
+            <div class="ui field">
+                {{ form_label(form.longitude,"Longitude") }}
+                {{ form_widget(form.longitude,{'attr':{'placeholder':"Longitude", 'data-validate': 'site-longitude'}})}}
+            </div>
+        </div>
+
+        <div class="two fields">
+            <div class="ui field">
+                {{ form_label(form.siteCity,"City") }}
+                {{ form_widget(form.siteCity,{'attr':{'placeholder':"City", 'data-validate': 'site-city'}})}}
+            </div>
+            <div class="ui field">
+                <label>Type</label>
+                <select id="site_type_edit" class="ui fluid dropdown" name="site-type">
+                    <option value="">Select type of site</option>
+                    <option value="1" {%if site.siteType == 1 %}selected{%endif%}>E</option>
+                    <option value="2" {%if site.siteType == 2 %}selected{%endif%}>N</option>
+                </select>
+            </div>
+        </div>
+        <h4 class="ui dividing header">Site Equipments</h4>
+        <table class="ui very basic table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Cost</th>
+                    <th>Life duration</th>
+                    <th class="right aligned">Action</th>
+                </tr>
+            </thead>
+            <tbody class="equipments" data-prototype="{{ forms.equipment_prototype(form.equipments.vars.prototype)|e }}">
+                {% for equipment in form.equipments %}
+                    <tr>
+                        {{ forms.equipment_prototype(equipment) }}
+                    </tr>
+                {% endfor %}
+            </tbody>
+            {% macro equipment_prototype(childForm) %}                
+                <td>{{ form_widget(childForm.equipmentName,{'attr':{'data-validate': 'equipment-name', 'placeholder': "Equipment name"}}) }}</td>
+                <td>{{ form_widget(childForm.cost,{'attr':{'data-validate': 'equipment-cost', 'placeholder': "Equipment cost"}}) }}</td>
+                <td>{{ form_widget(childForm.dureeVie,{'attr':{'data-validate': 'equipment-lifeDuration', 'placeholder': "Life duration"}}) }}</td>
+            {% endmacro %}
+        </table>
+        <div class="field">
+            <div id="server_error_message_edit" class="ui negative message" style="display:none">
+                <i class="close icon"></i>
+                <div id="server_error_content_edit" class="header">Internal server error</div>
+            </div>
+            <div id="error_name_message_edit" class="ui error message" style="display: none">
+                <i class="close icon"></i>
+                <div id="error_name_header_edit" class="header"></div>
+                <ul id="error_name_list_edit" class="list">
+
+                </ul>
+            </div>
+        </div>
+        {{form_widget(form._token)}}
+        </form>
+    </div>
+    <div class="actions">
+        <a id="cancel_edit_site" class="ui black deny mini button">Annuler</a>
+        <a id="submit_edit_site" class="ui yellow mini button">Sauvegarder</a>
+    </div>
+</div>
+<script>
+    function addEquipmentForm($collectionEquipment, $newLinkTr) {
+        // Get the data-prototype explained earlier
+        var prototype = $collectionEquipment.data('prototype');
+
+        // get the new index
+        var index = $collectionEquipment.data('index');
+
+        // Replace '__name__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        var $newForm = prototype.replace(/__name__/g, index);
+
+        // increase the index with one for the next item
+        $collectionEquipment.data('index', index + 1);
+
+        // Display the form in the page in an li, before the "Add a subscriber" link li
+        var $newFormTr = $('<tr></tr>').append($newForm);
+        $newLinkTr.before($newFormTr);
+        $('.ui.search.dropdown').dropdown({
+            on: 'click'
+        });
+        addEquipmentFormDeleteLink($newFormTr);
+    }
+
+    function addEquipmentFormDeleteLink($subscriberFormTr) {
+        var $removeFormA = $('<td class="right aligned"><a class="ui mini red compact icon button" data-tooltip="Supprimer" data-position="bottom center" data-inverted="" data-variation="mini"><i class="trash icon"></i></a></td>');
+        $subscriberFormTr.append($removeFormA);
+        $removeFormA.on('click', function (e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // remove the li for the subscriber form
+            $subscriberFormTr.remove();
+        });
+    }
+
+    var $collectionEquipment;
+
+    // setup an "add a subscriber" link
+    var $addEquipmentLink = $('<a class="ui mini yellow button" ><i class="plus icon"></i> Ajouter</a>');
+    var $newLinkTr = $('<tr></tr>').append($addEquipmentLink);
+
+    jQuery(document).ready(function () {
+        /******** suppression des equipments *********/
+        // Get the ul that holds the collection of equipments
+        $collectionEquipment = $('tbody.equipments');
+
+        // add a delete link to all of the existing subscriber form li elements
+        $collectionEquipment.find('tr').each(function () {
+            addEquipmentFormDeleteLink($(this));
+        });
+
+
+        /******** Ajout des equipments *********/
+
+        // Get the ul that holds the collection of equipments
+        $collectionEquipment = $('tbody.equipments');
+
+        // add the "add a subscriber" anchor and li to the equipments ul
+        $collectionEquipment.append($newLinkTr);
+
+        // count the current form inputs we have (e.g. 2), use that as the new
+        // index when inserting a new item (e.g. 2)
+        $collectionEquipment.data('index', $collectionEquipment.find(':input').length);
+
+        $addEquipmentLink.on('click', function (e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // add a new subscriber form (see next code block)
+            addEquipmentForm($collectionEquipment, $newLinkTr);
+        });
+    });
+</script>

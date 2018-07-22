@@ -23,12 +23,12 @@ $(document).ready(function () {
 //        $('.ui.sidebar').sidebar("show");
 //    });
 
-    $('#add_site_btn').click(function (e) {
-        $('tr#add_site').show();
-    });
-    $('#cancel_save_site_btn').click(function (e) {
-        $('tr#add_site').hide();
-    });
+//    $('#add_site_btn').click(function (e) {
+//        $('tr#add_site').show();
+//    });
+//    $('#cancel_save_site_btn').click(function (e) {
+//        $('tr#add_site').hide();
+//    });
     $('#login_form.ui.form')
             .form({
                 fields: {
@@ -125,25 +125,25 @@ $(document).ready(function () {
         }
     });
 
-    $('#links_menu').click(function (e) {
-        e.preventDefault();
-        $('#modal_links.ui.modal')
-                .modal('show')
-                ;
-    });
-    $('#sites_menu').click(function (e) {
-        e.preventDefault();
-        $('#modal_sites.ui.modal')
-                .modal('show')
-                ;
-    });
-    
-    $('#interferences_menu').click(function (e) {
-        e.preventDefault();
-        $('#modal_interferences.ui.modal')
-                .modal('show')
-                ;
-    });
+//    $('#links_menu').click(function (e) {
+//        e.preventDefault();
+//        $('#modal_links.ui.modal')
+//                .modal('show')
+//                ;
+//    });
+//    $('#sites_menu').click(function (e) {
+//        e.preventDefault();
+//        $('#modal_sites.ui.modal')
+//                .modal('show')
+//                ;
+//    });
+//    
+//    $('#add_site_btn').click(function (e) {
+//        e.preventDefault();
+//        $('#modal_add_site.ui.modal')
+//                .modal('show')
+//                ;
+//    });
 });
 
 function edit_site(id_site) {

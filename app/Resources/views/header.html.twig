@@ -5,31 +5,21 @@
             <a href="{{path('map_home')}}" class="item">
                 <img src="{{asset('bundles/app/images/logo.PNG')}}">
             </a>
-            <!--                        <div class="ui left inverted mini menu home_left_menu">
-            
-                                        <div class="item">
-                                            Frequency planning
-                                        </div>
-                                        
-                                    </div>-->
+
             <div class="ui right inverted mini menu">
-                <!--                            <div class="item">
-                                                <div class="ui action input">
-                                                    <input type="text" placeholder="Search on site...">
-                                                    <div class="ui mini button">Search</div>
-                                                </div>
-                                            </div>-->
 
                 <div id="lang_select" class="ui top right pointing dropdown item">
                     <i class="user icon"></i>
                     <span ></span><i class="dropdown icon" style="margin-left: 0;"></i>
                     <div class="menu">
-                        <a href="#" class="item" data-value="ao" >
-                            My account
+                        <a href="{{path('view_profile')}}" class="item" data-value="ao" >
+                            My profile
                         </a>
-                        <a href="{{path('register_new_user_get')}}" class="item" data-value="fr">
-                            New user
-                        </a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{path('register_new_user_get')}}" class="item" data-value="fr">
+                                New user
+                            </a>
+                        {% endif %}
                         <a href="{{ path('fos_user_security_logout') }}" class="item" data-value="fr">
                             log out
                         </a>
@@ -45,9 +35,7 @@
                         <a href="#" class="item" data-value="ao" >
                             Help
                         </a>
-                        <!--                                    <a href="3" class="item" data-value="fr" style="text-align: center;">
-                                                                <i class="fr flag" style="margin-right: 0;"></i>
-                                                            </a>-->
+                        
                     </div>
                 </div>
                 <div id="lang_select" class="ui top right pointing dropdown item">

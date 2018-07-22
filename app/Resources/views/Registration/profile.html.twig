@@ -1,0 +1,33 @@
+{% extends "layout.html.twig" %}
+{% trans_default_domain 'AppBundle' %}
+{% block title %}My profile{% endblock %}
+{% block content %}
+    <div id="nav_menu" class="ui tiny menu">
+        <div class="left menu">
+            <a class="item" href="">Home</a>
+            <div class="item" style="padding-left: 0; padding-right: 0;"><i class="small right chevron icon divider"></i></div>
+            <div class="item">My profile</div>
+        </div>
+    </div>
+    <div class='ui centered card' style="box-shadow: none; width: 50%">
+        <div class="ui tiny form">
+            <div class="inline field">
+                <label>First name : </label>
+                <span>{{user.firstname}}</span>
+            </div>
+            <div class="inline field">
+                <label>Last name : </label>
+                <span>{{user.lastname}}</span>
+            </div>
+            <div class="inline field">
+                <label>Username : </label>
+                <span>{{user.username}}</span>
+            </div>
+            <div class="inline field">
+                <label>Email address : </label>
+                <span>{{user.email}}</span>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

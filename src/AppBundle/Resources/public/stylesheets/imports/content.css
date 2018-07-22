@@ -1,16 +1,16 @@
 @media only screen and (max-width: 767px) {
   /* line 3, ../../sass/imports/content.scss */
-  .ui.container.main_container {
+  .ui.main_container {
     height: 409px !important;
   }
 
   /* line 7, ../../sass/imports/content.scss */
-  .ui.container.main_container .ui.right.floated.inverted.segment {
+  .ui.main_container .ui.right.floated.inverted.segment {
     display: none;
   }
 }
 /* line 13, ../../sass/imports/content.scss */
-.ui.container.segment.main_container {
+.ui.segment.main_container {
   box-shadow: none;
   border: none;
   margin: 0px;
@@ -18,55 +18,55 @@
   height: 40.3em;
 }
 /* line 19, ../../sass/imports/content.scss */
-.ui.container.segment.main_container img.fluid.image {
+.ui.segment.main_container img.fluid.image {
   height: 100%;
 }
 /* line 22, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment {
+.ui.segment.main_container .ui.left.floated.inverted.segment {
   position: absolute;
   top: 0px;
   margin-left: 0em;
   background: transparent;
 }
 /* line 27, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu {
   background: rgba(0, 0, 0, 0.63);
   border-radius: 0;
   width: 20rem;
 }
 /* line 32, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a {
   font-weight: bold;
   color: #fff;
   font-size: 14px;
 }
 /* line 36, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a:hover {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a:hover {
   color: #fdca00;
   text-decoration: underline;
 }
 /* line 43, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item .header {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item .header {
   /*color: $YellowMenuItem;*/
   font-size: 14px;
 }
 /* line 47, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item:before {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item:before {
   /*background: none;*/
 }
 /* line 50, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a.item {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a.item {
   font-weight: bold;
   color: #fff;
   font-size: 12px;
 }
 /* line 54, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a.item:hover {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a.item:hover {
   color: #fdca00;
   text-decoration: underline;
 }
 /* line 63, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment {
+.ui.segment.main_container .ui.right.floated.inverted.segment {
   position: absolute;
   top: 0px;
   /*margin-right: 0em;*/
@@ -74,39 +74,98 @@
   background: transparent;
 }
 /* line 69, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu {
   background: rgba(0, 0, 0, 0.63);
   border-radius: 0;
   width: 17rem;
 }
 /* line 74, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a {
   font-weight: bold;
   color: #fff;
   font-size: 14px;
 }
 /* line 78, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a:hover {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a:hover {
   color: #fdca00;
   text-decoration: underline;
 }
 /* line 85, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item .header {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item .header {
   color: #fdca00;
   font-size: 14px;
 }
 /* line 89, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item:before {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item:before {
   /*background: none;*/
 }
 /* line 92, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a.item {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a.item {
   font-weight: bold;
   color: #fff;
   font-size: 12px;
 }
 /* line 96, ../../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a.item:hover {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a.item:hover {
   color: #fdca00;
   text-decoration: underline;
+}
+
+/* line 106, ../../sass/imports/content.scss */
+.ui.modal > .close {
+  color: #1b1c1d;
+}
+
+/* line 110, ../../sass/imports/content.scss */
+.ui.dimmer {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+/* line 114, ../../sass/imports/content.scss */
+.ui.modal > .close {
+  top: 0.2rem;
+  right: 0.2rem;
+  font-size: 1em;
+}
+
+/* line 121, ../../sass/imports/content.scss */
+.ui.small.modal .header, .ui.tiny.modal .header {
+  font-size: 16px !important;
+}
+/* line 126, ../../sass/imports/content.scss */
+.ui.small.modal .content .ui.form .ui.dividing.header, .ui.tiny.modal .content .ui.form .ui.dividing.header {
+  font-size: 14px !important;
+}
+/* line 130, ../../sass/imports/content.scss */
+.ui.small.modal .content .ui.form .ui.field label, .ui.tiny.modal .content .ui.form .ui.field label {
+  font-size: 12px !important;
+}
+
+/* line 137, ../../sass/imports/content.scss */
+.ui.tiny.form .ui.dividing.header {
+  font-size: 14px !important;
+}
+/* line 141, ../../sass/imports/content.scss */
+.ui.tiny.form .field label {
+  font-size: 14px !important;
+}
+
+/* line 146, ../../sass/imports/content.scss */
+.ui.table tr th {
+  font-size: 12px;
+}
+/* line 149, ../../sass/imports/content.scss */
+.ui.table tr td {
+  font-size: 12px;
+}
+
+/* line 155, ../../sass/imports/content.scss */
+.float_button.ui.yellow.button {
+  color: #080600;
+  bottom: 45px;
+  cursor: pointer;
+  position: fixed;
+  right: 22px;
+  z-index: 2;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3), 0px 0px 1px rgba(0, 0, 0, 0.1), inset 0px 1px 0px rgba(255, 255, 255, 0.25), inset 0px -1px 0px rgba(0, 0, 0, 0.15);
 }

@@ -1,6 +1,6 @@
 @import "imports/variables.scss";
 @media only screen and (max-width: 767px){
-    .ui.container.page_content{
+    .ui.page_content{
         .row{
             .four.wide.column{
                 display: none;
@@ -9,7 +9,7 @@
     }
 
 }
-.ui.container.segment.page_content{
+.ui.segment.page_content{
     box-shadow: none;
     border: none;
     margin-top: 0px;

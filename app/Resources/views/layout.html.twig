@@ -7,7 +7,23 @@
     {% include('sidebar.html.twig') %}
     <div class="pusher">
         {% include('header.html.twig') %}
-        <div class="ui divided doubling stackable grid container segment page_content">
+        <div id="message_success" class="ui mini success message" style="position: fixed; top: 6em; right: 42em; left: auto; z-index: 5; width: 28em; display: none">
+            <i class="close icon"></i>
+            <div class="header"></div>
+        </div>
+
+        <div id="message_error" class="ui mini error message" style="position: fixed; top: 6em; right: 42em; left: auto; z-index: 5; width: 28em; display: none">
+            <i class="close icon"></i>
+            <div class="header"> </div>
+        </div>
+
+        <div id="message_loading" class="ui mini icon message" style="position: fixed; top: 6em; right: 42em; left: auto; z-index: 5; width: 20em; display: none;">
+            <i class="notched circle loading mini icon"></i>
+            <div class="content">
+                <div class="header">Traitement encours... </div>
+            </div>
+        </div>
+        <div class="ui divided doubling stackable grid segment page_content">
             <div class='row'>
                 <div class="four wide column">
                     <div class="ui inverted vertical menu">
@@ -43,191 +59,13 @@
                     </div>
                 </div>
                 <div class="twelve wide column">
-                    {% block content %}{% endblock content %}
-                </div>
-
-            </div>
-        </div>
-                
-        {% include('footer.html.twig') %}
-    </div>
-    
-    <div class="ui modal" id="modal_interferences">
-        <i class="close icon"></i>
-        <div class="header">
-            Interferences
-        </div>
-        <div class=" content">
-            zterzhtruerutykiuyiuyiuy
-        </div>
-        <div class="actions">
-            <div class="ui black deny button">
-                Nope
-            </div>
-
-        </div>
-    </div>
-    
-    <div class="ui modal" id="modal_links">
-        <i class="close icon"></i>
-        <div class="header">
-            Links
-        </div>
-        <div class=" content">
-            zterzhtruerutykiuyiuyiuy
-        </div>
-        <div class="actions">
-            <div class="ui black deny button">
-                Nope
+                {% block content %}{% endblock content %}
             </div>
 
         </div>
     </div>
 
-    <div class="ui modal" id="modal_sites">
-        <i class="close icon"></i>
-        <div class="header">
-            Sites
-        </div>
-        <div class=" content">
-            <table class="ui celled small table">
-                <thead>
-                    <tr><th>T.Number</th>
-                        <th>Name</th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
-                        <th>City</th>
-                        <th>Type</th>
-                        <th>Actions</th>
-                    </tr></thead>
-                <tbody>
-                    <tr id="site_1">
-                        <td>1</td>
-                        <td>Mballa 2</td>
-                        <td>9.2</td>
-                        <td>8.5</td>
-                        <td>Yaoundé</td>
-                        <td>xxx</td>
-                        <td>
-                            <div class="ui pagination mini menu">
-                                <a class="icon item" onclick="edit_site(1);">
-                                    <i class="blue write icon"></i>
-                                </a>
-                                <a class="icon item">
-                                    <i class="red trash icon"></i>
-                                </a>
-                            </div>
+    {% include('footer.html.twig') %}
+</div>
 
-                        </td>
-                    </tr>
-                <form id="form_edit_site_1" >
-                    <tr class="ui mini form" id="edit_site_1" style="display: none;">
-                        <td><div class="wide field"><input type="text" name="t_number" placeholder="T Number"  value="1"></div></td>
-                        <td><input type="text" name="nom" placeholder="Name" value="Mballa 2"></td>
-                        <td><input type="text" name="latitude" placeholder="Latitude" value="9.2"></td>
-                        <td><input type="text" name="longitude" placeholder="Longitude" value="8.5"></td>
-                        <td><input type="text" name="city" placeholder="City" value="Yaoundé"></td>
-                        <td><input type="text" name="type" placeholder="Type" value="xxx"></td>
-                        <td>
-                            <button id="edit_site_btn" class="ui primary mini icon button" data-tooltip="Edit" data-position="bottom center" data-inverted="" data-variation="mini" href=""><i class="save icon"></i></button>
-                            <a id="cancel_edit_site_btn" onclick="cancel_edit_site(1);" class="ui red mini icon button" data-tooltip="Cancel" data-position="bottom center" data-inverted="" data-variation="mini"><i class="cancel icon"></i></a>
-                        </td>
-                    </tr>
-                </form>
-                <tr id="site_2">
-                    <td>2</td>
-                    <td>Cradat</td>
-                    <td>9.2</td>
-                    <td>8.5</td>
-                    <td>Yaoundé</td>
-                    <td>xxx</td>
-                    <td>
-                        <div class="ui pagination mini menu">
-                            <a class="icon item" onclick="edit_site(2);">
-                                <i class="blue write icon"></i>
-                            </a>
-                            <a class="icon item">
-                                <i class="red trash icon"></i>
-                            </a>
-                        </div>
-
-                    </td>
-                </tr>
-                <form id="form_edit_site_2" >
-                    <tr class="ui mini form" id="edit_site_2" style="display: none;">
-                        <td><div class="wide field"><input type="text" name="t_number" placeholder="T Number"  value="2"></div></td>
-                        <td><input type="text" name="nom" placeholder="Name" value="Mballa 2"></td>
-                        <td><input type="text" name="latitude" placeholder="Latitude" value="9.2"></td>
-                        <td><input type="text" name="longitude" placeholder="Longitude" value="8.5"></td>
-                        <td><input type="text" name="city" placeholder="City" value="Yaoundé"></td>
-                        <td><input type="text" name="type" placeholder="Type" value="xxx"></td>
-                        <td>
-                            <button id="edit_site_btn" class="ui primary mini icon button" data-tooltip="Edit" data-position="bottom center" data-inverted="" data-variation="mini" href=""><i class="save icon"></i></button>
-                            <a id="cancel_edit_site_btn" onclick="cancel_edit_site(2);" class="ui red mini icon button" data-tooltip="Cancel" data-position="bottom center" data-inverted="" data-variation="mini"><i class="cancel icon"></i></a>
-                        </td>
-                    </tr>
-                </form>
-                <tr id="site_3">
-                    <td>1</td>
-                    <td>Effoulan</td>
-                    <td>9.2</td>
-                    <td>8.5</td>
-                    <td>Yaoundé</td>
-                    <td>xxx</td>
-                    <td>
-                        <div class="ui pagination mini menu">
-                            <a class="icon item" onclick="edit_site(3);">
-                                <i class="blue write icon"></i>
-                            </a>
-                            <a class="icon item">
-                                <i class="red trash icon"></i>
-                            </a>
-                        </div>
-
-                    </td>
-                </tr>
-                <form id="form_edit_site_3" >
-                    <tr class="ui mini form" id="edit_site_3" style="display: none;">
-                        <td><div class="wide field"><input type="text" name="t_number" placeholder="T Number"  value="3"></div></td>
-                        <td><input type="text" name="nom" placeholder="Name" value="Mballa 2"></td>
-                        <td><input type="text" name="latitude" placeholder="Latitude" value="9.2"></td>
-                        <td><input type="text" name="longitude" placeholder="Longitude" value="8.5"></td>
-                        <td><input type="text" name="city" placeholder="City" value="Yaoundé"></td>
-                        <td><input type="text" name="type" placeholder="Type" value="xxx"></td>
-                        <td>
-                            <button id="edit_site_btn" class="ui primary mini icon button" data-tooltip="Edit" data-position="bottom center" data-inverted="" data-variation="mini" href=""><i class="save icon"></i></button>
-                            <a id="cancel_edit_site_btn" onclick="cancel_edit_site(3);" class="ui red mini icon button" data-tooltip="Cancel" data-position="bottom center" data-inverted="" data-variation="mini"><i class="cancel icon"></i></a>
-                        </td>
-                    </tr>
-                </form>
-                <form id="form_add_site" >
-                    <tr class="ui mini form" id="add_site" style="display: none;">
-                        <td><div class="wide field"><input type="text" name="t_number" placeholder="T Number" ></div></td>
-                        <td><input type="text" name="nom" placeholder="Name" ></td>
-                        <td><input type="text" name="latitude" placeholder="Latitude" ></td>
-                        <td><input type="text" name="longitude" placeholder="Longitude" ></td>
-                        <td><input type="text" name="city" placeholder="City" ></td>
-                        <td><input type="text" name="type" placeholder="Type" ></td>
-                        <td>
-                            <button id="save_site_btn" class="ui primary mini icon button" data-tooltip="Save" data-position="bottom center" data-inverted="" data-variation="mini" ><i class="save icon"></i></button>
-                            <a id="cancel_save_site_btn" class="ui red mini icon button" data-tooltip="Cancel" data-position="bottom center" data-inverted="" data-variation="mini"><i class="cancel icon"></i></a>
-                        </td>
-                    </tr>
-                </form>
-                </tbody>
-                <tfoot>
-                    <tr><th colspan="7">
-                            
-                            <button id="add_site_btn" class="ui right floated green mini icon button" data-tooltip="Add a site" data-position="bottom center" data-inverted="" data-variation="mini"><i class='plus icon'></i></button>
-                        </th>
-                    </tr></tfoot>
-            </table>
-        </div>
-        <div class="actions">
-            <div class="ui black deny button">
-                Nope
-            </div>
-
-        </div>
-    </div>
 {% endblock body %}

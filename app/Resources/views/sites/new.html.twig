@@ -1,0 +1,88 @@
+<div class="ui small modal" id="add_site">
+    <i class="close icon"></i>
+    <div class="header">
+        Add a site
+    </div>
+    <div class="content">
+        {{ form_start(form, {'method': 'POST', 'action':  path('site_add'), 'attr': {'class': 'ui mini form', 'id': 'add_site_form'} }) }}
+        <h4 class="ui dividing header">Site informations</h4>
+        <div class="two fields">
+            <div class="ui field">
+                {{ form_label(form.tNumber,"T Number") }}
+                {{ form_widget(form.tNumber,{'attr':{'placeholder':"T Number", 'data-validate': 't-number'}})}}
+            </div>
+            <div class="ui field">
+                {{ form_label(form.siteName,"Nom") }}
+                {{ form_widget(form.siteName,{'attr':{'placeholder':"Site name", 'data-validate': 'site-name'}})}}
+            </div>
+        </div>
+
+        <div class="two fields">
+            <div class="ui field">
+                {{ form_label(form.latitude,"Latitude") }}
+                {{ form_widget(form.latitude,{'attr':{'placeholder':"Latitude", 'data-validate': 'site-latitude'}})}}
+            </div>
+            <div class="ui field">
+                {{ form_label(form.longitude,"Longitude") }}
+                {{ form_widget(form.longitude,{'attr':{'placeholder':"Longitude", 'data-validate': 'site-longitude'}})}}
+            </div>
+        </div>
+
+        <div class="two fields">
+            <div class="ui field">
+                {{ form_label(form.siteCity,"City") }}
+                {{ form_widget(form.siteCity,{'attr':{'placeholder':"City", 'data-validate': 'site-city'}})}}
+            </div>
+            <div class="ui field">
+                <label>Type</label>
+                <select class="ui fluid dropdown" name="site-type" data-validate="site-type">
+                    <option value="">Select type of site</option>
+                    <option value="1">E</option>
+                    <option value="2">N</option>
+                </select>
+            </div>
+        </div>
+        <h4 class="ui dividing header">Site equipments</h4>
+        <table class="ui very basic table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Cost</th>
+                    <th>Lifetime</th>
+                    <th class="right aligned">Action</th>
+                </tr>
+            </thead>
+            <tbody class="equipments" data-prototype="{{ forms.equipment_prototype(form.equipments.vars.prototype)|e }}">
+                {% for equipment in form.equipments %}
+                    <tr>
+                        {{ forms.equipment_prototype(equipment) }}
+                    </tr>
+                {% endfor %}
+            </tbody>
+            {% macro equipment_prototype(childForm) %}                
+                <td>{{ form_widget(childForm.equipmentName,{'attr':{'data-validate': 'equipment-name', 'placeholder': "Equipment name"}}) }}</td>
+                <td>{{ form_widget(childForm.cost,{'attr':{'data-validate': 'equipment-cost', 'placeholder': "Equipment cost"}}) }}</td>
+                <td>{{ form_widget(childForm.dureeVie,{'attr':{'data-validate': 'equipment-lifeDuration', 'placeholder': "Life duration"}}) }}</td>
+            {% endmacro %}
+        </table>
+        <div class="field">
+            <div id="server_error_message" class="ui small negative message" style="display:none">
+                <i class="close icon"></i>
+                <div id="server_error_content" class="header">Internal server error</div>
+            </div>
+            <div id="error_name_message" class="ui small error message" style="display: none">
+                <i class="close icon"></i>
+                <div id="error_name_header" class="header"></div>
+                <ul id="error_name_list" class="list">
+
+                </ul>
+            </div>
+        </div>
+        {{form_widget(form._token)}}
+        </form>
+    </div>
+    <div class="actions">
+        <a id="cancel_add_site" class="ui black deny mini button">Annuler</a>
+        <a id="submit_site" class="ui yellow mini button">Sauvegarder</a>
+    </div>
+</div>

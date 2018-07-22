@@ -187,17 +187,17 @@
 }
 @media only screen and (max-width: 767px) {
   /* line 3, ../sass/imports/content.scss */
-  .ui.container.main_container {
+  .ui.main_container {
     height: 409px !important;
   }
 
   /* line 7, ../sass/imports/content.scss */
-  .ui.container.main_container .ui.right.floated.inverted.segment {
+  .ui.main_container .ui.right.floated.inverted.segment {
     display: none;
   }
 }
 /* line 13, ../sass/imports/content.scss */
-.ui.container.segment.main_container {
+.ui.segment.main_container {
   box-shadow: none;
   border: none;
   margin: 0px;
@@ -205,55 +205,55 @@
   height: 40.3em;
 }
 /* line 19, ../sass/imports/content.scss */
-.ui.container.segment.main_container img.fluid.image {
+.ui.segment.main_container img.fluid.image {
   height: 100%;
 }
 /* line 22, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment {
+.ui.segment.main_container .ui.left.floated.inverted.segment {
   position: absolute;
   top: 0px;
   margin-left: 0em;
   background: transparent;
 }
 /* line 27, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu {
   background: rgba(0, 0, 0, 0.63);
   border-radius: 0;
   width: 20rem;
 }
 /* line 32, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a {
   font-weight: bold;
   color: #fff;
   font-size: 14px;
 }
 /* line 36, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a:hover {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a:hover {
   color: #fdca00;
   text-decoration: underline;
 }
 /* line 43, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item .header {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item .header {
   /*color: $YellowMenuItem;*/
   font-size: 14px;
 }
 /* line 47, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item:before {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item:before {
   /*background: none;*/
 }
 /* line 50, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a.item {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a.item {
   font-weight: bold;
   color: #fff;
   font-size: 12px;
 }
 /* line 54, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a.item:hover {
+.ui.segment.main_container .ui.left.floated.inverted.segment .inverted.vertical.menu .item a.item:hover {
   color: #fdca00;
   text-decoration: underline;
 }
 /* line 63, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment {
+.ui.segment.main_container .ui.right.floated.inverted.segment {
   position: absolute;
   top: 0px;
   /*margin-right: 0em;*/
@@ -261,51 +261,110 @@
   background: transparent;
 }
 /* line 69, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu {
   background: rgba(0, 0, 0, 0.63);
   border-radius: 0;
   width: 17rem;
 }
 /* line 74, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a {
   font-weight: bold;
   color: #fff;
   font-size: 14px;
 }
 /* line 78, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a:hover {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a:hover {
   color: #fdca00;
   text-decoration: underline;
 }
 /* line 85, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item .header {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item .header {
   color: #fdca00;
   font-size: 14px;
 }
 /* line 89, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item:before {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item:before {
   /*background: none;*/
 }
 /* line 92, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a.item {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a.item {
   font-weight: bold;
   color: #fff;
   font-size: 12px;
 }
 /* line 96, ../sass/imports/content.scss */
-.ui.container.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a.item:hover {
+.ui.segment.main_container .ui.right.floated.inverted.segment .inverted.vertical.menu .item a.item:hover {
   color: #fdca00;
   text-decoration: underline;
 }
 
+/* line 106, ../sass/imports/content.scss */
+.ui.modal > .close {
+  color: #1b1c1d;
+}
+
+/* line 110, ../sass/imports/content.scss */
+.ui.dimmer {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+/* line 114, ../sass/imports/content.scss */
+.ui.modal > .close {
+  top: 0.2rem;
+  right: 0.2rem;
+  font-size: 1em;
+}
+
+/* line 121, ../sass/imports/content.scss */
+.ui.small.modal .header, .ui.tiny.modal .header {
+  font-size: 16px !important;
+}
+/* line 126, ../sass/imports/content.scss */
+.ui.small.modal .content .ui.form .ui.dividing.header, .ui.tiny.modal .content .ui.form .ui.dividing.header {
+  font-size: 14px !important;
+}
+/* line 130, ../sass/imports/content.scss */
+.ui.small.modal .content .ui.form .ui.field label, .ui.tiny.modal .content .ui.form .ui.field label {
+  font-size: 12px !important;
+}
+
+/* line 137, ../sass/imports/content.scss */
+.ui.tiny.form .ui.dividing.header {
+  font-size: 14px !important;
+}
+/* line 141, ../sass/imports/content.scss */
+.ui.tiny.form .field label {
+  font-size: 14px !important;
+}
+
+/* line 146, ../sass/imports/content.scss */
+.ui.table tr th {
+  font-size: 12px;
+}
+/* line 149, ../sass/imports/content.scss */
+.ui.table tr td {
+  font-size: 12px;
+}
+
+/* line 155, ../sass/imports/content.scss */
+.float_button.ui.yellow.button {
+  color: #080600;
+  bottom: 45px;
+  cursor: pointer;
+  position: fixed;
+  right: 22px;
+  z-index: 2;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3), 0px 0px 1px rgba(0, 0, 0, 0.1), inset 0px 1px 0px rgba(255, 255, 255, 0.25), inset 0px -1px 0px rgba(0, 0, 0, 0.15);
+}
+
 @media only screen and (max-width: 767px) {
   /* line 5, ../sass/imports/page_content.scss */
-  .ui.container.page_content .row .four.wide.column {
+  .ui.page_content .row .four.wide.column {
     display: none;
   }
 }
 /* line 12, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content {
+.ui.segment.page_content {
   box-shadow: none;
   border: none;
   margin-top: 0px;
@@ -313,16 +372,16 @@
   min-height: 40.2em;
 }
 /* line 18, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row {
+.ui.segment.page_content .row {
   padding: 0px;
 }
 /* line 20, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column {
+.ui.segment.page_content .row .twelve.wide.column {
   /*background: #fff*/
   padding-top: 0px !important;
 }
 /* line 23, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu {
+.ui.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu {
   border: none;
   /*border-right: none;*/
   box-shadow: none;
@@ -330,120 +389,120 @@
   margin-top: 1em;
 }
 /* line 29, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu a.item {
+.ui.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu a.item {
   color: #c11921;
 }
 /* line 31, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu a.item:hover {
+.ui.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu a.item:hover {
   text-decoration: underline;
   color: #fdca00;
 }
 /* line 36, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu div.item {
+.ui.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu div.item {
   /*color: $MenuItemColor;*/
 }
 /* line 39, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu .item {
+.ui.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu .item {
   font-weight: 700;
 }
 /* line 41, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu .item:hover {
+.ui.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu .item:hover {
   background: none;
 }
 /* line 44, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu .item:before {
+.ui.segment.page_content .row .twelve.wide.column #nav_menu.ui.tiny.menu .item:before {
   background: none;
 }
 /* line 49, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.fluid.about_aes {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.fluid.about_aes {
   border-radius: 0px;
   box-shadow: none;
 }
 /* line 52, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.fluid.about_aes .content.card_header {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.fluid.about_aes .content.card_header {
   border-radius: 0px !important;
   background-color: #741716;
   border: 1px solid #741716;
 }
 /* line 56, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.fluid.about_aes .content.card_header .header {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.fluid.about_aes .content.card_header .header {
   color: #ffffff;
   font-size: 14px;
 }
 /* line 63, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.fluid.about_aes .content.card_content .ui.list .item {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.fluid.about_aes .content.card_content .ui.list .item {
   font-size: 14px;
 }
 /* line 70, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.fluid.about_aes .content.card_content .ui.two.cards.cards_team .ui.card .content .header {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.fluid.about_aes .content.card_content .ui.two.cards.cards_team .ui.card .content .header {
   font-size: 14px;
 }
 /* line 73, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.fluid.about_aes .content.card_content .ui.two.cards.cards_team .ui.card .content .description {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.fluid.about_aes .content.card_content .ui.two.cards.cards_team .ui.card .content .description {
   font-size: 12px;
 }
 /* line 83, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_activities_services .ui.card.fluid.activity_service {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_activities_services .ui.card.fluid.activity_service {
   border-radius: 0px;
   box-shadow: none;
 }
 /* line 86, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_activities_services .ui.card.fluid.activity_service .content.card_header {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_activities_services .ui.card.fluid.activity_service .content.card_header {
   border-radius: 0px !important;
   background-color: #741716;
   border: 1px solid #741716;
   max-height: 55px;
 }
 /* line 91, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_activities_services .ui.card.fluid.activity_service .content.card_header .header {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_activities_services .ui.card.fluid.activity_service .content.card_header .header {
   color: #ffffff;
   font-size: 12px;
 }
 /* line 96, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_activities_services .ui.card.fluid.activity_service .content.description {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_activities_services .ui.card.fluid.activity_service .content.description {
   border: 1px solid rgba(34, 36, 38, 0.1);
   font-size: 12px;
 }
 /* line 103, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_projects .ui.card.fluid.project {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_projects .ui.card.fluid.project {
   border-radius: 0px;
   box-shadow: none;
 }
 /* line 106, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_projects .ui.card.fluid.project .content.card_header {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_projects .ui.card.fluid.project .content.card_header {
   border-radius: 0px !important;
   background-color: #741716;
   border: 1px solid #741716;
   max-height: 55px;
 }
 /* line 111, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_projects .ui.card.fluid.project .content.card_header .header {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_projects .ui.card.fluid.project .content.card_header .header {
   color: #ffffff;
   font-size: 14px;
 }
 /* line 116, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_projects .ui.card.fluid.project .content.description {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_projects .ui.card.fluid.project .content.description {
   border: 1px solid rgba(34, 36, 38, 0.1);
   font-size: 12px;
 }
 /* line 123, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_business_areas .ui.card.fluid.business_area {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_business_areas .ui.card.fluid.business_area {
   border-radius: 0px;
 }
 /* line 125, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_business_areas .ui.card.fluid.business_area .image {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_business_areas .ui.card.fluid.business_area .image {
   border-radius: 0px !important;
 }
 /* line 129, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_business_areas .ui.card.fluid.business_area .content .header {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_business_areas .ui.card.fluid.business_area .content .header {
   font-size: 16px;
 }
 /* line 132, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_business_areas .ui.card.fluid.business_area .content .description {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.cards.cards_business_areas .ui.card.fluid.business_area .content .description {
   font-size: 12px;
 }
 /* line 141, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column {
+.ui.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column {
   /*                    &:hover .segment_text_hover,
                           &:focus .segment_text_hover,
                           &:active .segment_text_hover {
@@ -455,12 +514,12 @@
                       }*/
 }
 /* line 151, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column .segment_text_hover {
+.ui.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column .segment_text_hover {
   padding: 0px;
   border-radius: 0px;
 }
 /* line 155, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column .segment_text_hover .ui.left.floated.segment {
+.ui.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column .segment_text_hover .ui.left.floated.segment {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -475,7 +534,7 @@
   /*background-color: #020202ed;*/
 }
 /* line 168, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column .segment_text_hover .ui.left.floated.segment .ui.card {
+.ui.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column .segment_text_hover .ui.left.floated.segment .ui.card {
   border-radius: 0px;
   box-shadow: none;
   border: none;
@@ -485,256 +544,256 @@
                                   }*/
 }
 /* line 177, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column .segment_text_hover .ui.left.floated.segment .ui.card .content .header {
+.ui.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column .segment_text_hover .ui.left.floated.segment .ui.card .content .header {
   font-size: 14px;
   color: #ffffff;
   /*text-transform: uppercase;*/
 }
 /* line 183, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column .segment_text_hover .ui.left.floated.segment .ui.card .content a:hover {
+.ui.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column .segment_text_hover .ui.left.floated.segment .ui.card .content a:hover {
   text-decoration: underline;
 }
 /* line 187, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column .segment_text_hover .ui.left.floated.segment .ui.card .content .description {
+.ui.segment.page_content .row .twelve.wide.column .ui.grid.segments_text_hover_grid .column .segment_text_hover .ui.left.floated.segment .ui.card .content .description {
   font-size: 12px;
   color: #ffffff;
   font-weight: bold;
 }
 /* line 199, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors {
   padding-top: 5%;
 }
 /* line 203, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_title {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_title {
   /*width: 32%!important;*/
   background: transparent;
 }
 /* line 206, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_title .ui.fluid.card {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_title .ui.fluid.card {
   box-shadow: none;
   border: none;
   background: transparent;
 }
 /* line 210, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_title .ui.fluid.card .content {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_title .ui.fluid.card .content {
   border: none;
   background: transparent;
   /*padding: 0px;*/
 }
 /* line 214, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_title .ui.fluid.card .content .ui.circular.segment {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_title .ui.fluid.card .content .ui.circular.segment {
   height: 12rem;
   width: 12rem;
 }
 /* line 215, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_title .ui.fluid.card .content .ui.circular.segment .header {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_title .ui.fluid.card .content .ui.circular.segment .header {
   font-size: 14px;
 }
 @media only screen and (max-width: 767px) {
   /* line 223, ../sass/imports/page_content.scss */
-  .ui.container.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_title .ui.fluid.card .content {
+  .ui.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_title .ui.fluid.card .content {
     padding-left: 27% !important;
   }
 }
 /* line 231, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_content {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_content {
   background: transparent;
 }
 /* line 233, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_content .ui.fluid.card {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_content .ui.fluid.card {
   box-shadow: none;
   border: none;
   background: transparent;
 }
 /* line 237, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_content .ui.fluid.card .content {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column.page_content .ui.fluid.card .content {
   border: none;
   background: transparent;
 }
 @media only screen and (max-width: 767px) {
   /* line 247, ../sass/imports/page_content.scss */
-  .ui.container.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column {
+  .ui.segment.page_content .row .twelve.wide.column .ui.middle.grid.intervention_sectiors .row .column {
     width: 100% !important;
   }
 }
 /* line 254, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid {
   padding-top: 5%;
 }
 /* line 258, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column {
   width: 32% !important;
   background: transparent;
 }
 /* line 261, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column .ui.fluid.card {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column .ui.fluid.card {
   box-shadow: none;
   border: none;
   background: transparent;
 }
 /* line 265, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column .ui.fluid.card .content {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column .ui.fluid.card .content {
   border: none;
   background: transparent;
   /*padding: 0px;*/
 }
 /* line 269, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column .ui.fluid.card .content .ui.circular.segment {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column .ui.fluid.card .content .ui.circular.segment {
   height: 12rem;
   width: 12rem;
 }
 /* line 270, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column .ui.fluid.card .content .ui.circular.segment .header {
+.ui.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column .ui.fluid.card .content .ui.circular.segment .header {
   font-size: 14px;
 }
 @media only screen and (max-width: 767px) {
   /* line 278, ../sass/imports/page_content.scss */
-  .ui.container.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column .ui.fluid.card .content {
+  .ui.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column .ui.fluid.card .content {
     padding-left: 27% !important;
   }
 }
 @media only screen and (max-width: 767px) {
   /* line 287, ../sass/imports/page_content.scss */
-  .ui.container.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column {
+  .ui.segment.page_content .row .twelve.wide.column .ui.middle.four.column.grid .row .column {
     width: 100% !important;
   }
 }
 /* line 297, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .items .item .content .header {
+.ui.segment.page_content .row .twelve.wide.column .items .item .content .header {
   font-size: 16px;
   color: #c11921;
 }
 /* line 300, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .items .item .content .header:hover {
+.ui.segment.page_content .row .twelve.wide.column .items .item .content .header:hover {
   color: #fdca00;
   text-decoration: underline;
 }
 /* line 305, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .items .item .content .description {
+.ui.segment.page_content .row .twelve.wide.column .items .item .content .description {
   font-size: 14px;
 }
 /* line 308, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .items .item .content .description .ui.list .item {
+.ui.segment.page_content .row .twelve.wide.column .items .item .content .description .ui.list .item {
   font-size: 12px;
 }
 /* line 314, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .items .item .content .extra a {
+.ui.segment.page_content .row .twelve.wide.column .items .item .content .extra a {
   color: #c11921;
 }
 /* line 316, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .items .item .content .extra a:hover, .ui.container.segment.page_content .row .twelve.wide.column .items .item .content .extra a:focus, .ui.container.segment.page_content .row .twelve.wide.column .items .item .content .extra a:active {
+.ui.segment.page_content .row .twelve.wide.column .items .item .content .extra a:hover, .ui.segment.page_content .row .twelve.wide.column .items .item .content .extra a:focus, .ui.segment.page_content .row .twelve.wide.column .items .item .content .extra a:active {
   color: #fdca00;
 }
 /* line 325, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .angola_presentation h2 {
+.ui.segment.page_content .row .twelve.wide.column .angola_presentation h2 {
   font-size: 16px !important;
 }
 /* line 328, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .angola_presentation p {
+.ui.segment.page_content .row .twelve.wide.column .angola_presentation p {
   font-size: 14px !important;
   text-align: justify;
 }
 /* line 333, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.contact_card {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.contact_card {
   width: 26rem;
 }
 /* line 335, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.contact_card .header {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.contact_card .header {
   font-size: 14px;
 }
 /* line 338, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.contact_card .description {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.contact_card .description {
   font-size: 12px;
 }
 /* line 340, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.contact_card .description p {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.contact_card .description p {
   font-size: 12px;
 }
 /* line 345, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.single_post {
   box-shadow: none;
 }
 /* line 347, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .header.post_title {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .header.post_title {
   font-size: 16px;
 }
 /* line 350, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .meta {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .meta {
   font-size: 14px;
 }
 /* line 352, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .meta a.nav_link {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .meta a.nav_link {
   font-size: 14px;
   color: #c11921;
 }
 /* line 355, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .meta a.nav_link:hover, .ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .meta a.nav_link:focus, .ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .meta a.nav_link:active {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .meta a.nav_link:hover, .ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .meta a.nav_link:focus, .ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .meta a.nav_link:active {
   color: #fdca00;
 }
 /* line 360, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .content {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .content {
   font-size: 14px;
 }
 /* line 362, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .content p {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .content p {
   font-size: 14px;
 }
 /* line 366, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .content.aes_extra {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .content.aes_extra {
   font-size: 14px;
 }
 /* line 368, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .content.aes_extra a {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .content.aes_extra a {
   font-size: 14px;
   color: #c11921;
 }
 /* line 371, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .content.aes_extra a:hover, .ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .content.aes_extra a:focus, .ui.container.segment.page_content .row .twelve.wide.column .ui.card.single_post .content.aes_extra a:active {
+.ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .content.aes_extra a:hover, .ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .content.aes_extra a:focus, .ui.segment.page_content .row .twelve.wide.column .ui.card.single_post .content.aes_extra a:active {
   color: #fdca00;
 }
 /* line 381, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.column.grid.business_area_colums .column.business_area_column .ui.card.business_area_card .image img {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.column.grid.business_area_colums .column.business_area_column .ui.card.business_area_card .image img {
   height: 155px;
   /*border-radius: 0px;*/
 }
 /* line 387, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .twelve.wide.column .ui.three.column.grid.business_area_colums .column.business_area_column .ui.card.business_area_card .content .header {
+.ui.segment.page_content .row .twelve.wide.column .ui.three.column.grid.business_area_colums .column.business_area_column .ui.card.business_area_card .content .header {
   font-size: 14px;
 }
 /* line 395, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .four.wide.column {
+.ui.segment.page_content .row .four.wide.column {
   width: 20% !important;
   padding: 0px !important;
 }
 /* line 398, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .four.wide.column .ui.vertical.menu .item > i.icon {
+.ui.segment.page_content .row .four.wide.column .ui.vertical.menu .item > i.icon {
   float: left;
   margin: 0px 6px 0px 0.5em;
 }
 /* line 402, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .four.wide.column .ui.vertical.menu {
+.ui.segment.page_content .row .four.wide.column .ui.vertical.menu {
   width: 100%;
   height: 100%;
   border-radius: 0px;
   background: #262626;
 }
 /* line 407, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .four.wide.column .ui.vertical.menu .item {
+.ui.segment.page_content .row .four.wide.column .ui.vertical.menu .item {
   font-size: 14px;
   font-weight: bold;
 }
 /* line 410, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .four.wide.column .ui.vertical.menu .item a {
+.ui.segment.page_content .row .four.wide.column .ui.vertical.menu .item a {
   font-weight: bold;
   /*color:$MenuItemColor;*/
 }
 /* line 413, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .four.wide.column .ui.vertical.menu .item a:hover {
+.ui.segment.page_content .row .four.wide.column .ui.vertical.menu .item a:hover {
   color: #c11921 !important;
   text-decoration: underline;
 }
 /* line 419, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .four.wide.column .ui.vertical.menu .item:not(.no_hover) {
+.ui.segment.page_content .row .four.wide.column .ui.vertical.menu .item:not(.no_hover) {
   border-radius: 0px;
   background-image: linear-gradient(to right, #262626 50%, #fdca00 50%);
   background-size: 200% 100%;
@@ -746,7 +805,7 @@
   transition: all 0.25s ease-in;
 }
 /* line 431, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .four.wide.column .ui.vertical.menu .item:not(.no_hover):hover {
+.ui.segment.page_content .row .four.wide.column .ui.vertical.menu .item:not(.no_hover):hover {
   -webkit-transition: all 0.25s ease-in;
   -moz-transition: all 0.25s ease-in;
   transition: all 0.25s ease-in;
@@ -755,21 +814,21 @@
   color: #c11921;
 }
 /* line 438, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .four.wide.column .ui.vertical.menu .item:not(.no_hover):hover a {
+.ui.segment.page_content .row .four.wide.column .ui.vertical.menu .item:not(.no_hover):hover a {
   color: #000;
 }
 /* line 444, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .four.wide.column .ui.vertical.menu .active_item {
+.ui.segment.page_content .row .four.wide.column .ui.vertical.menu .active_item {
   background: #fdca00 !important;
   color: #000;
 }
 /* line 447, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .four.wide.column .ui.vertical.menu .active_item a {
+.ui.segment.page_content .row .four.wide.column .ui.vertical.menu .active_item a {
   color: #000;
   font-weight: bold;
 }
 /* line 450, ../sass/imports/page_content.scss */
-.ui.container.segment.page_content .row .four.wide.column .ui.vertical.menu .active_item a:hover {
+.ui.segment.page_content .row .four.wide.column .ui.vertical.menu .active_item a:hover {
   color: #c11921 !important;
   text-decoration: underline;
 }

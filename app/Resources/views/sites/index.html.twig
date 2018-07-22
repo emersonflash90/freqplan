@@ -1,3 +1,4 @@
+{% import _self as forms %}
 {% extends "layout.html.twig" %}
 {% trans_default_domain 'AppBundle' %}
 {% block title %}Sites{% endblock %}
@@ -13,146 +14,266 @@
     <div class='ui fluid card' style="box-shadow: none;">
         <table class="ui celled small table">
             <thead>
-                <tr><th>T.Number</th>
+                <tr><th>T-Number</th>
                     <th>Name</th>
                     <th>Latitude</th>
                     <th>Longitude</th>
                     <th>City</th>
                     <th>Type</th>
                     <th>Actions</th>
-                </tr></thead>
-            <tbody>
-                <tr id="site_1">
-                    <td>1</td>
-                    <td>Mballa 2</td>
-                    <td>9.2</td>
-                    <td>8.5</td>
-                    <td>Yaoundé</td>
-                    <td>xxx</td>
-                    <td>
-                        <div class="ui pagination mini menu">
-                            <a class="icon item" onclick="edit_site(1);">
-                                <i class="blue write icon"></i>
-                            </a>
-                            <a class="icon item">
-                                <i class="red trash icon"></i>
-                            </a>
-                        </div>
+                </tr>
+            </thead>
+            {%if sites%}
+                <tbody>
+                    {%for site in sites%}
+                        <tr id="site_{{site.id}}">
+                            <td>{{site.tNumber}}</td>
+                            <td>{{site.siteName}}</td>
+                            <td>{{site.latitude}}</td>
+                            <td>{{site.longitude}}</td>
+                            <td>{{site.siteCity}}</td>
+                            <td>{{site.siteType}}</td>
+                            <td>
+                                <div class="ui pagination mini menu">
+                                    <a onclick="edit_site({{site.id}});" class="icon edit_site_btn item">
+                                        <i class="blue write icon"></i>
+                                    </a>
+                                    <a onclick="delete_site({{site.id}});" class="icon delete_site_btn item">
+                                        <i class="red trash icon"></i>
+                                    </a>
+                                </div>
 
-                    </td>
-                </tr>
-                <form id="form_edit_site_1" >
-                    <tr class="ui mini form" id="edit_site_1" style="display: none;">
-                        <td><div class="wide field"><input type="text" name="t_number" placeholder="T Number"  value="1"></div></td>
-                        <td><input type="text" name="nom" placeholder="Name" value="Mballa 2"></td>
-                        <td><input type="text" name="latitude" placeholder="Latitude" value="9.2"></td>
-                        <td><input type="text" name="longitude" placeholder="Longitude" value="8.5"></td>
-                        <td><input type="text" name="city" placeholder="City" value="Yaoundé"></td>
-                        <td><input type="text" name="type" placeholder="Type" value="xxx"></td>
-                        <td>
-                            <button id="edit_site_btn" class="ui primary mini icon button" data-tooltip="Edit" data-position="bottom center" data-inverted="" data-variation="mini" href=""><i class="save icon"></i></button>
-                            <a id="cancel_edit_site_btn" onclick="cancel_edit_site(1);" class="ui red mini icon button" data-tooltip="Cancel" data-position="bottom center" data-inverted="" data-variation="mini"><i class="cancel icon"></i></a>
-                        </td>
-                    </tr>
-                </form>
-                <tr id="site_2">
-                    <td>2</td>
-                    <td>Cradat</td>
-                    <td>9.2</td>
-                    <td>8.5</td>
-                    <td>Yaoundé</td>
-                    <td>xxx</td>
-                    <td>
-                        <div class="ui pagination mini menu">
-                            <a class="icon item" onclick="edit_site(2);">
-                                <i class="blue write icon"></i>
-                            </a>
-                            <a class="icon item">
-                                <i class="red trash icon"></i>
-                            </a>
-                        </div>
+                            </td>
+                        </tr>
+                    {%endfor%} 
 
-                    </td>
-                </tr>
-                <form id="form_edit_site_2" >
-                    <tr class="ui mini form" id="edit_site_2" style="display: none;">
-                         <td><div class="wide field"><input type="text" name="t_number" placeholder="T Number"  value="2"></div></td>
-                        <td><input type="text" name="nom" placeholder="Name" value="Mballa 2"></td>
-                        <td><input type="text" name="latitude" placeholder="Latitude" value="9.2"></td>
-                        <td><input type="text" name="longitude" placeholder="Longitude" value="8.5"></td>
-                        <td><input type="text" name="city" placeholder="City" value="Yaoundé"></td>
-                        <td><input type="text" name="type" placeholder="Type" value="xxx"></td>
-                        <td>
-                            <button id="edit_site_btn" class="ui primary mini icon button" data-tooltip="Edit" data-position="bottom center" data-inverted="" data-variation="mini" href=""><i class="save icon"></i></button>
-                            <a id="cancel_edit_site_btn" onclick="cancel_edit_site(2);" class="ui red mini icon button" data-tooltip="Cancel" data-position="bottom center" data-inverted="" data-variation="mini"><i class="cancel icon"></i></a>
-                        </td>
+                </tbody>
+                {#<tfoot>
+                    <tr><th colspan="7">
+                            {#<div class="ui left floated pagination mini menu">
+                                <a class="icon item">
+                                    <i class="left chevron icon"></i>
+                                </a>
+                                <a class="item">1</a>
+                                <a class="item">2</a>
+                                <a class="item">3</a>
+                                <a class="item">4</a>
+                                <a class="icon item">
+                                    <i class="right chevron icon"></i>
+                                </a>
+                            </div>
+                                                        <button id="add_site_btn" class="ui right floated green mini icon button" data-tooltip="Add a site" data-position="bottom center" data-inverted="" data-variation="mini"><i class='plus icon'></i></button>
+                        </th>
                     </tr>
-                </form>
-                <tr id="site_3">
-                    <td>1</td>
-                    <td>Effoulan</td>
-                    <td>9.2</td>
-                    <td>8.5</td>
-                    <td>Yaoundé</td>
-                    <td>xxx</td>
-                    <td>
-                        <div class="ui pagination mini menu">
-                            <a class="icon item" onclick="edit_site(3);">
-                                <i class="blue write icon"></i>
-                            </a>
-                            <a class="icon item">
-                                <i class="red trash icon"></i>
-                            </a>
-                        </div>
-
-                    </td>
-                </tr>
-                <form id="form_edit_site_3" >
-                    <tr class="ui mini form" id="edit_site_3" style="display: none;">
-                         <td><div class="wide field"><input type="text" name="t_number" placeholder="T Number"  value="3"></div></td>
-                        <td><input type="text" name="nom" placeholder="Name" value="Mballa 2"></td>
-                        <td><input type="text" name="latitude" placeholder="Latitude" value="9.2"></td>
-                        <td><input type="text" name="longitude" placeholder="Longitude" value="8.5"></td>
-                        <td><input type="text" name="city" placeholder="City" value="Yaoundé"></td>
-                        <td><input type="text" name="type" placeholder="Type" value="xxx"></td>
-                        <td>
-                            <button id="edit_site_btn" class="ui primary mini icon button" data-tooltip="Edit" data-position="bottom center" data-inverted="" data-variation="mini" href=""><i class="save icon"></i></button>
-                            <a id="cancel_edit_site_btn" onclick="cancel_edit_site(3);" class="ui red mini icon button" data-tooltip="Cancel" data-position="bottom center" data-inverted="" data-variation="mini"><i class="cancel icon"></i></a>
-                        </td>
+                </tfoot>#}
+            {%else%}
+                <tfoot>
+                    <tr><th colspan="7">
+                            <div class="center aligned">No site added at this moment</div>
+                        </th>
                     </tr>
-                </form>
-            <form id="form_add_site" >
-                <tr class="ui mini form" id="add_site" style="display: none;">
-                    <td><div class="wide field"><input type="text" name="t_number" placeholder="T Number" ></div></td>
-                    <td><input type="text" name="nom" placeholder="Name" ></td>
-                    <td><input type="text" name="latitude" placeholder="Latitude" ></td>
-                    <td><input type="text" name="longitude" placeholder="Longitude" ></td>
-                    <td><input type="text" name="city" placeholder="City" ></td>
-                    <td><input type="text" name="type" placeholder="Type" ></td>
-                    <td>
-                        <button id="save_site_btn" class="ui primary mini icon button" data-tooltip="Save" data-position="bottom center" data-inverted="" data-variation="mini" ><i class="save icon"></i></button>
-                        <a id="cancel_save_site_btn" class="ui red mini icon button" data-tooltip="Cancel" data-position="bottom center" data-inverted="" data-variation="mini"><i class="cancel icon"></i></a>
-                    </td>
-                </tr>
-            </form>
-            </tbody>
-            <tfoot>
-                <tr><th colspan="7">
-                        {#<div class="ui left floated pagination mini menu">
-                            <a class="icon item">
-                                <i class="left chevron icon"></i>
-                            </a>
-                            <a class="item">1</a>
-                            <a class="item">2</a>
-                            <a class="item">3</a>
-                            <a class="item">4</a>
-                            <a class="icon item">
-                                <i class="right chevron icon"></i>
-                            </a>
-                        </div>#}
-                        <button id="add_site_btn" class="ui right floated green mini icon button" data-tooltip="Add a site" data-position="bottom center" data-inverted="" data-variation="mini"><i class='plus icon'></i></button>
-                    </th>
-                </tr></tfoot>
+                </tfoot>
+            {%endif%}
         </table>
+
     </div>
+    {% block block_add_new %}
+        <div class="ui small modal" id="add_site">
+            <i class="close icon"></i>
+            <div class="header">
+                Add a site
+            </div>
+            <div class="content">
+                {{ form_start(form, {'method': 'POST', 'action':  path('site_add'), 'attr': {'class': 'ui mini form', 'id': 'add_site_form'} }) }}
+                <h4 class="ui dividing header">Site informations</h4>
+                <div class="two fields">
+                    <div class="ui field">
+                        {{ form_label(form.tNumber,"T Number") }}
+                        {{ form_widget(form.tNumber,{'attr':{'placeholder':"T Number", 'data-validate': 't-number'}})}}
+                    </div>
+                    <div class="ui field">
+                        {{ form_label(form.siteName,"Nom") }}
+                        {{ form_widget(form.siteName,{'attr':{'placeholder':"Site name", 'data-validate': 'site-name'}})}}
+                    </div>
+                </div>
+
+                <div class="two fields">
+                    <div class="ui field">
+                        {{ form_label(form.latitude,"Latitude") }}
+                        {{ form_widget(form.latitude,{'attr':{'placeholder':"Latitude", 'data-validate': 'site-latitude'}})}}
+                    </div>
+                    <div class="ui field">
+                        {{ form_label(form.longitude,"Longitude") }}
+                        {{ form_widget(form.longitude,{'attr':{'placeholder':"Longitude", 'data-validate': 'site-longitude'}})}}
+                    </div>
+                </div>
+
+                <div class="two fields">
+                    <div class="ui field">
+                        {{ form_label(form.siteCity,"City") }}
+                        {{ form_widget(form.siteCity,{'attr':{'placeholder':"City", 'data-validate': 'site-city'}})}}
+                    </div>
+                    <div class="ui field">
+                        <label>Type</label>
+                        <select class="ui fluid dropdown" name="site-type" data-validate="site-type">
+                            <option value="">Select type of site</option>
+                            <option value="1">E</option>
+                            <option value="2">N</option>
+                        </select>
+                    </div>
+                </div>
+                <h4 class="ui dividing header">Site equipments</h4>
+                <table class="ui very basic table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Cost</th>
+                            <th>Lifetime</th>
+                            <th class="right aligned">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="equipments" data-prototype="{{ forms.equipment_prototype(form.equipments.vars.prototype)|e }}">
+                        {% for equipment in form.equipments %}
+                            <tr>
+                                {{ forms.equipment_prototype(equipment) }}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    {% macro equipment_prototype(childForm) %}                
+                        <td>{{ form_widget(childForm.equipmentName,{'attr':{'data-validate': 'equipment-name', 'placeholder': "Equipment name"}}) }}</td>
+                        <td>{{ form_widget(childForm.cost,{'attr':{'data-validate': 'equipment-cost', 'placeholder': "Equipment cost"}}) }}</td>
+                        <td>{{ form_widget(childForm.dureeVie,{'attr':{'data-validate': 'equipment-lifeDuration', 'placeholder': "Life duration"}}) }}</td>
+                    {% endmacro %}
+                </table>
+                <div class="field">
+                    <div id="server_error_message" class="ui small negative message" style="display:none">
+                        <i class="close icon"></i>
+                        <div id="server_error_content" class="header">Internal server error</div>
+                    </div>
+                    <div id="error_name_message" class="ui small error message" style="display: none">
+                        <i class="close icon"></i>
+                        <div id="error_name_header" class="header"></div>
+                        <ul id="error_name_list" class="list">
+
+                        </ul>
+                    </div>
+                </div>
+                {{form_widget(form._token)}}
+                </form>
+            </div>
+            <div class="actions">
+                <a id="cancel_add_site" class="ui black deny mini button">Annuler</a>
+                <a id="submit_site" class="ui yellow mini button">Sauvegarder</a>
+            </div>
+        </div>
+        <button id="add_site_btn" class="float_button circular ui huge yellow icon button" data-tooltip="Add a site" data-position="top center" data-inverted="">
+            <i class="write icon"></i>
+        </button>
+    {% endblock %}
+
+    {% block block_edit %}
+        <div id="edit_site_content">
+
+        </div>
+    {% endblock %}
+    {% block block_confirmation_modal %}
+        <div id="confirm_delete_site" class="ui tiny modal">
+            <i class="close icon"></i>
+            <div class="header">
+                Confirmation de la suppression
+            </div>
+            <div class="content">
+                <p>Vous êtes sur le point de supprimer ce site. </p>
+                <p>Voulez-vous vraiment réaliser cette action ?</p>
+            </div>
+            <div class="actions">
+                <div class="ui red tiny deny button">
+                    Non
+                </div>
+                <div id="execute_delete_site" i class="ui green tiny right labeled icon button">
+                    Oui
+                    <i class="checkmark icon"></i>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent()}}
+    <script type="text/javascript" src="{{ asset('bundles/app/js/site.js')}}"></script>
+    <script>
+        function addEquipmentForm($collectionEquipment, $newLinkTr) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionEquipment.data('prototype');
+
+            // get the new index
+            var index = $collectionEquipment.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var $newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionEquipment.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a subscriber" link li
+            var $newFormTr = $('<tr></tr>').append($newForm);
+            $newLinkTr.before($newFormTr);
+            $('.ui.search.dropdown').dropdown({
+                on: 'click'
+            });
+            addEquipmentFormDeleteLink($newFormTr);
+        }
+
+        function addEquipmentFormDeleteLink($subscriberFormTr) {
+            var $removeFormA = $('<td class="right aligned"><a class="ui mini red compact icon button" data-tooltip="Supprimer" data-position="bottom center" data-inverted="" data-variation="mini"><i class="trash icon"></i></a></td>');
+            $subscriberFormTr.append($removeFormA);
+            $removeFormA.on('click', function (e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the subscriber form
+                $subscriberFormTr.remove();
+            });
+        }
+
+        var $collectionEquipment;
+
+        // setup an "add a subscriber" link
+        var $addEquipmentLink = $('<a class="ui mini yellow button" ><i class="plus icon"></i> Ajouter</a>');
+        var $newLinkTr = $('<tr></tr>').append($addEquipmentLink);
+
+        jQuery(document).ready(function () {
+            /******** suppression des equipments *********/
+            // Get the ul that holds the collection of equipments
+            $collectionEquipment = $('tbody.equipments');
+
+            // add a delete link to all of the existing subscriber form li elements
+            $collectionEquipment.find('tr').each(function () {
+                addEquipmentFormDeleteLink($(this));
+            });
+
+
+            /******** Ajout des equipments *********/
+
+            // Get the ul that holds the collection of equipments
+            $collectionEquipment = $('tbody.equipments');
+
+            // add the "add a subscriber" anchor and li to the equipments ul
+            $collectionEquipment.append($newLinkTr);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionEquipment.data('index', $collectionEquipment.find(':input').length);
+
+            $addEquipmentLink.on('click', function (e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new subscriber form (see next code block)
+                addEquipmentForm($collectionEquipment, $newLinkTr);
+            });
+        });
+    </script>
 {% endblock %}

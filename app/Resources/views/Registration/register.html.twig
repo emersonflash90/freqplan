@@ -1,6 +1,6 @@
 {% extends "layout.html.twig" %}
 {% trans_default_domain 'AppBundle' %}
-{% block title %}Accueil{% endblock %}
+{% block title %}Add a new user{% endblock %}
 {% block content %}
     <div id="nav_menu" class="ui tiny menu">
         <div class="left menu">
@@ -24,7 +24,7 @@
                 <i class="close icon"></i>
             </div>
         {% endfor %}
-        {{ form_start(form, {'method': 'POST', 'action': path('register_new_user_post'), 'attr': {'class': 'ui form', 'id': 'register_form'} }) }}
+        {{ form_start(form, {'method': 'POST', 'action': path('register_new_user_post'), 'attr': {'class': 'ui tiny form', 'id': 'register_form'} }) }}
         <div class="field">
             <label>First name</label>
             {{ form_widget(form.firstname,{'attr':{'placeholder': "Enter your first name", 'data-validate': 'firstname'}})}}
@@ -54,7 +54,7 @@
         <div class="field">
             {{form_rest(form)}}
         </div>
-        <button id="submit_register_form" class="ui yellow button" type="submit">Create an account</button>
+        <button id="submit_register_form" class="ui yellow tiny button" type="submit">Create an account</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}

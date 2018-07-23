@@ -133,7 +133,7 @@ function add_site() {
 $(function () {
     add_site();
     $('#cancel_add_site').click(function () {
-        window.location.reload();
+//        window.location.reload();
     });
 });
 
@@ -177,7 +177,7 @@ function edit_site(id) {
                 on: 'click'
             });
             $('#cancel_edit_site').click(function () {
-                window.location.reload();
+//                window.location.reload();
             });
             $('#edit_site.ui.modal').modal('show');
             execute_edit(id);
@@ -316,6 +316,147 @@ function execute_edit(id) {
             );
 }
 
+function assign_node(id) {
+    $('#message_error').hide();
+    $('#message_success').hide();
+    $('.ui.dropdown').dropdown('remove active');
+    $('.ui.dropdown').dropdown('remove visible');
+    $('.ui.dropdown>div.menu').removeClass('visible');
+    $('.ui.dropdown>div.menu').addClass('hidden');
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    });
+    $.ajax({
+        type: 'GET',
+        url: Routing.generate('assign_node_get', {id: id}),
+        dataType: 'json',
+        beforeSend: function () {
+            $('#message_loading').show();
+        },
+        statusCode: {
+            500: function (xhr) {
+
+            },
+            404: function (response, textStatus, jqXHR) {
+                $('#message_error>div.header').html(response.responseJSON.message);
+                $('#message_error').show();
+            }
+        },
+        success: function (response, textStatus, jqXHR) {
+            $('#assign_node').remove();
+            $('#edit_site_content').html(response.assign_node_form);
+
+            $('#assign_node.ui.modal').modal('setting', {
+                autofocus: false,
+                inverted: true,
+                closable: false
+            });
+            
+            $('.ui.dropdown').dropdown({
+                on: 'click'
+            });
+            $('#cancel_assign_node').click(function () {
+//                window.location.reload();
+            });
+            $('#assign_node.ui.modal').modal('show');
+            execute_assign_node(id);
+
+            $('#message_loading').hide();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#message_loading').hide();
+        }
+    });
+}
+
+function execute_assign_node(id) {
+    $('#submit_assign_node').click(function (e) {
+        e.preventDefault();
+        $('#server_error_message').hide();
+        $('#message_error').hide();
+        $('#message_success').hide();
+        $('#error_name_message').hide();
+        $('#error_name_message_edit').hide();
+        $('#assign_node_form.ui.form').submit();
+    });
+    $('#assign_node_form.ui.form')
+            .form({
+                fields: {
+                    node: {
+                        identifier: 'node',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: "Please select a nodal site"
+                            }
+                        ]
+                    }
+                },
+                inline: true,
+                on: 'change',
+                onSuccess: function (event, fields) {
+                    $.ajax({
+                        type: 'PUT',
+                        url: Routing.generate('assign_node_put', {id: id}),
+                        data: $('#assign_node_form.ui.form').serialize(),
+                        dataType: 'json',
+                        processData: false,
+                        //contentType: false,
+                        cache: false,
+                        beforeSend: function () {
+                            $('#submit_assign_node').addClass('disabled');
+                            $('#cancel_assign_node').addClass('disabled');
+                            $('#assign_node_form.ui.form').addClass('loading');
+                            $('#cancel_details_site').addClass('disabled');
+                            $('#disable_site').addClass('disabled');
+                            $('#enable_site').addClass('disabled');
+                        },
+                        statusCode: {
+                            500: function (xhr) {
+                                $('#server_error_message_edit').show();
+                            },
+                            400: function (response, textStatus, jqXHR) {
+                                var myerrors = response.responseJSON;
+                                if (myerrors.success === false) {
+                                    $('#error_name_header_edit').html("Echec de la validation");
+                                    $('#error_name_list_edit').html('<li>' + myerrors.message + '</li>');
+                                    $('#error_name_message_edit').show();
+                                } else {
+                                    $('#error_name_header_edit').html("Echec de la validation. Veuillez verifier vos données");
+                                    $('#error_name_message_edit').show();
+                                }
+
+                            }
+                        },
+                        success: function (response, textStatus, jqXHR) {
+                            $('#submit_assign_node').removeClass('disabled');
+                            $('#cancel_assign_node').removeClass('disabled');
+                            $('#assign_node_form.ui.form').removeClass('loading');
+                            $('#assign_node.ui.modal').modal('hide');
+                            $('#message_success>div.header').html(response.message);
+                            $('#message_success').show();
+                            window.location.reload();
+                            setTimeout(function () {
+                                $('#message_success').hide();
+                            }, 4000);
+                            $('#assign_node').remove();
+
+
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('#submit_assign_node').removeClass('disabled');
+                            $('#cancel_assign_node').removeClass('disabled');
+                            $('#assign_node_form.ui.form').removeClass('loading');
+                        }
+                    });
+                    return false;
+                }
+            }
+            );
+}
+
+
+
 function delete_site(id) {
     $('#confirm_delete_site.ui.modal')
             .modal('show')
@@ -361,7 +502,7 @@ function delete_site(id) {
                 $('#message_loading').hide();
                 $('#message_success>div.header').html(response.message);
                 $('#message_success').show();
-                window.location.replace(Routing.generate('sites_home'));
+                window.location.replace();
                 setTimeout(function () {
                     $('#message_success').hide();
                 }, 4000);
@@ -408,15 +549,12 @@ function show_site(id) {
                 inverted: true,
                 closable: false
             });
-            $('#ogive_alertbundle_site_domains.ui.dropdown').dropdown({
-                on: 'click'
-            });
-            $('#ogive_alertbundle_site_subDomains.ui.dropdown').dropdown({
+            $('.ui.dropdown').dropdown({
                 on: 'click'
             });
 
             $('#cancel_details_site').click(function () {
-                window.location.reload();
+//                window.location.reload();
             });
             $('#edit_site.ui.modal').modal('show');
             execute_edit(id);

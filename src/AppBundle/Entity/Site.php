@@ -76,13 +76,23 @@ class Site extends GeneralClass {
      */
     private $polarisation;
     
+    /**
+     * @var \Site
+     *
+     * @ORM\ManyToOne(targetEntity="Site")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="nodal_site", referencedColumnName="id")
+     * })
+     */
+    private $nodalSite;
+    
     
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Site", mappedBy="site", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Site", mappedBy="nodalSite", cascade={"remove", "persist"})
      */
-    private $nodalSites;
+    private $endSites;
     
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -303,45 +313,45 @@ class Site extends GeneralClass {
     
     
     /**
-     * Add nodalSite
+     * Add endSite
      *
-     * @param \AppBundle\Entity\Site $nodalSite 
+     * @param \AppBundle\Entity\Site $endSite 
      * @return Site
      */
-    public function addNodalSite(\AppBundle\Entity\Site $nodalSite) {
-        $this->nodalSites[] = $nodalSite;
+    public function addEndSite(\AppBundle\Entity\Site $endSite) {
+        $this->endSites[] = $endSite;
         return $this;
     }
 
     /**
-     * Get nodalSites
+     * Get endSites
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getNodalSites() {
-        return $this->nodalSites;
+    public function getEndSites() {
+        return $this->endSites;
     }
 
     /**
-     * Set nodalSites
+     * Set endSites
      *
-     * @param \Doctrine\Common\Collections\Collection $nodalSites
+     * @param \Doctrine\Common\Collections\Collection $endSites
      * @return Site
      */
-    public function setNodalSites(\Doctrine\Common\Collections\Collection $nodalSites = null) {
-        $this->nodalSites = $nodalSites;
+    public function setEndSites(\Doctrine\Common\Collections\Collection $endSites = null) {
+        $this->endSites = $endSites;
 
         return $this;
     }
 
     /**
-     * Remove nodalSite
+     * Remove endSite
      *
-     * @param \AppBundle\Entity\NodalSite $nodalSite
+     * @param \AppBundle\Entity\Site $endSite
      * @return Site
      */
-    public function removeNodalSite(\AppBundle\Entity\NodalSite $nodalSite) {
-        $this->nodalSites->removeElement($nodalSite);
+    public function removeEndSite(\AppBundle\Entity\Site $endSite) {
+        $this->endSites->removeElement($endSite);
         return $this;
     }
     
@@ -386,6 +396,28 @@ class Site extends GeneralClass {
     public function removeEquipment(\AppBundle\Entity\Equipment $equipment) {
         $this->equipments->removeElement($equipment);
         return $this;
+    }
+    
+    /**
+     * Set nodalSite
+     *
+     * @param \AppBundle\Entity\Site $nodalSite
+     *
+     * @return Site
+     */
+    public function setNodalSite(\AppBundle\Entity\Site $nodalSite=null) {
+        $this->nodalSite = $nodalSite;
+
+        return $this;
+    }
+
+    /**
+     * Get nodalSite
+     *
+     * @return \AppBundle\Entity\Site
+     */
+    public function getNodalSite() {
+        return $this->nodalSite;
     }
     
     public function setSearchData() {

@@ -9,12 +9,12 @@
         {% include('header.html.twig') %}
         <div id="message_success" class="ui mini success message" style="position: fixed; top: 6em; right: 42em; left: auto; z-index: 5; width: 28em; display: none">
             <i class="close icon"></i>
-            <div class="header"></div>
+            <div class="header" style="font-size: 12px;"></div>
         </div>
 
         <div id="message_error" class="ui mini error message" style="position: fixed; top: 6em; right: 42em; left: auto; z-index: 5; width: 28em; display: none">
             <i class="close icon"></i>
-            <div class="header"> </div>
+            <div class="header" style="font-size: 12px;"> </div>
         </div>
 
         <div id="message_loading" class="ui mini icon message" style="position: fixed; top: 6em; right: 42em; left: auto; z-index: 5; width: 20em; display: none;">
@@ -27,10 +27,10 @@
             <div class='row'>
                 <div class="four wide column">
                     <div class="ui inverted vertical menu">
-                        <a class="item {% block active_item_map %}{% endblock %}" href="{{path('map_home')}}">
+                        {#<a class="item {% block active_item_map %}{% endblock %}" href="{{path('map_home')}}">
                             <i class="map icon" ></i>
                             <span>Map</span>
-                        </a>
+                        </a>#}
                         <a id="sites_menu" class="item {% block active_item_sites %}{% endblock %}" href="{{path('sites_home')}}">
                             <i class="podcast icon" ></i>
                             <span>Sites</span>
@@ -61,7 +61,6 @@
                 <div class="twelve wide column">
                 {% block content %}{% endblock content %}
             </div>
-
         </div>
     </div>
 

@@ -40,11 +40,11 @@ class DefaultController extends Controller {
         $site = new Site();
         $em = $this->getDoctrine()->getManager();
         $page = 1;
-        $maxResults = 8;
+        $maxResults = 12;
         $route_param_page = array();
         $route_param_search_query = array();
         $search_query = null;
-        $placeholder = "Rechercher une site...";
+        $placeholder = "Find a site...";
         if ($request->get('page')) {
             $page = intval(htmlspecialchars(trim($request->get('page'))));
             $route_param_page['page'] = $page;
@@ -57,10 +57,23 @@ class DefaultController extends Controller {
         $total_pages = ceil(count($em->getRepository('AppBundle:Site')->getAllByString($search_query)) / $maxResults);
         $form = $this->createForm('AppBundle\Form\SiteType', $site);
         $sites = $em->getRepository('AppBundle:Site')->getAll($start_from, $maxResults, $search_query);
-        // replace this example code with whatever you need
+        $start = 1;
+        $end = 1;
+        if ($total_pages > 1) {
+            $start = 1;
+            $end = $total_pages;
+            if ($total_pages > 5 && $page > 3) {
+                $end = $page + 2 < $total_pages ? $page + 2 : $total_pages;
+                $start = $end - 4 > 1 ? $end - 4 : 1;
+            } elseif ($page > 5) {
+                $end = 5;
+            }
+        }
         return $this->render('sites/index.html.twig', array(
                     'sites' => $sites,
                     'total_pages' => $total_pages,
+                    'start' => $start,
+                    'end' => $end,
                     'page' => $page,
                     'form' => $form->createView(),
                     'route_param_page' => $route_param_page,
@@ -69,26 +82,217 @@ class DefaultController extends Controller {
                     'placeholder' => $placeholder
         ));
     }
-    
+
     /**
      * @Rest\View(statusCode=Response::HTTP_OK)
      * @Rest\Delete("/sites/{id}", name="site_delete", options={ "method_prefix" = false, "expose" = true  })
      */
     public function removeSiteAction(Site $site) {
-
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
+        if (empty($site)) {
+            return new JsonResponse(['message' => 'Site not found'], Response::HTTP_NOT_FOUND);
+        }
         $repositorySite = $this->getDoctrine()->getManager()->getRepository('AppBundle:Site');
         if ($site) {
+            if ($site->getSiteType() == 1) {
+                $nodalSite = $site->getNodalSite();
+                $nodalSite->removeEndSite($site);
+                $repositorySite->updateSite($nodalSite);
+            } else {
+                $endSites = $site->getEndSites();
+                foreach ($endSites as $endSite) {
+                    $endSite->setNodalSite(null);
+                    $repositorySite->updateSite($endSite);
+                }
+            }
             $repositorySite->deleteSite($site);
-            $view = View::create(["message" => 'Site supprimée avec succès']);
+            $view = View::create(["message" => 'Site successfully deleted']);
             $view->setFormat('json');
             return $view;
             //return new JsonResponse(["message" => 'Site supprimée avec succès'], Response::HTTP_OK);
         } else {
-            return new JsonResponse(["message" => 'Site introuvable'], Response::HTTP_NOT_FOUND);
+            return new JsonResponse(["message" => 'Site not found'], Response::HTTP_NOT_FOUND);
         }
+    }
+
+    /**
+     * @Rest\View()
+     * @Rest\Get("/sites/{id}" , name="site_get_one", options={ "method_prefix" = false, "expose" = true })
+     */
+    public function getSiteByIdAction(Site $site) {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+        if (empty($site)) {
+            return new JsonResponse(['message' => 'Site not found'], Response::HTTP_NOT_FOUND);
+        }
+        $form = $this->createForm('AppBundle\Form\SiteType', $site, array('method' => 'PUT'));
+        $site_details = $this->renderView('sites/show.html.twig', array(
+            'site' => $site,
+            'form' => $form->createView()
+        ));
+        $view = View::create(['site_details' => $site_details]);
+        $view->setFormat('json');
+        return $view;
+    }
+
+    /**
+     * @Rest\View()
+     * @Rest\Get("/sites/{id}/assign-node" , name="assign_node_get", options={ "method_prefix" = false, "expose" = true })
+     */
+    public function getAssignNodeAction(Site $site) {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+        if (empty($site)) {
+            return new JsonResponse(['message' => 'Site not found'], Response::HTTP_NOT_FOUND);
+        }
+        $nodeList = $this->getSitesNearBy($site);
+        $assign_node_form = $this->renderView('sites/assign_node.html.twig', array(
+            'site' => $site,
+            'nodeList' => $nodeList
+        ));
+        $view = View::create(['assign_node_form' => $assign_node_form]);
+        $view->setFormat('json');
+        return $view;
+    }
+
+    /**
+     * @Rest\View()
+     * @Rest\Put("/sites/{id}/assign-node" , name="assign_node_put", options={ "method_prefix" = false, "expose" = true })
+     * @param Request $request
+     */
+    public function putAssignNodeAction(Request $request, Site $site) {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+        if (empty($site)) {
+            return new JsonResponse(['message' => 'Site not found'], Response::HTTP_NOT_FOUND);
+        }
+        $repositorySite = $this->getDoctrine()->getManager()->getRepository('AppBundle:Site');
+        $nodalSite = new Site();
+        if ($request->isMethod("PUT")) {
+            $node = intval($request->get("node"));
+            $nodalSite = $repositorySite->find($node);
+            $site->setNodalSite($nodalSite);
+            $nodalSite->addEndSite($site);
+
+            $nodalSite = $repositorySite->updateSite($nodalSite);
+            $site = $repositorySite->updateSite($site);
+
+            $view = View::create(["message" => 'Node successfully assigned',]);
+            $view->setFormat('json');
+            return $view;
+        } else {
+            return new JsonResponse(["message" => 'An error occured during node assigning!'], Response::HTTP_NOT_FOUND);
+        }
+    }
+
+    public function getSitesNearBy(Site $siteRef) {
+        $repositorySite = $this->getDoctrine()->getManager()->getRepository('AppBundle:Site');
+        $listeSiteNodaux = $repositorySite->findBy(array("siteType" => 2, "status" => 1));
+        if (count($listeSiteNodaux) >= 3) {
+            $dist_tmp1 = $this->Distance($siteRef, $listeSiteNodaux[0]);
+            $dist_tmp2 = $this->Distance($siteRef, $listeSiteNodaux[1]);
+            $dist_tmp3 = $this->Distance($siteRef, $listeSiteNodaux[2]);
+
+            if ($dist_tmp1 < $dist_tmp2) {
+                if ($dist_tmp1 < $dist_tmp3) {
+                    if ($dist_tmp2 < $dist_tmp3) {
+                        $d1 = $dist_tmp1;
+                        $j1 = 0;
+                        $d2 = $dist_tmp2;
+                        $j2 = 1;
+                        $d3 = $dist_tmp3;
+                        $j3 = 2;
+                    } else {
+                        $d1 = $dist_tmp1;
+                        $j1 = 0;
+                        $d2 = $dist_tmp3;
+                        $j2 = 2;
+                        $d3 = $dist_tmp2;
+                        $j3 = 1;
+                    }
+                } else {
+                    $d1 = $dist_tmp3;
+                    $j1 = 2;
+                    $d2 = $dist_tmp1;
+                    $j2 = 0;
+                    $d3 = $dist_tmp2;
+                    $j3 = 1;
+                }
+            } else {
+                if ($dist_tmp1 > $dist_tmp3) {
+                    if ($dist_tmp2 > $dist_tmp3) {
+                        $d1 = $dist_tmp3;
+                        $j1 = 2;
+                        $d2 = $dist_tmp2;
+                        $j2 = 1;
+                        $d3 = $dist_tmp1;
+                        $j3 = 0;
+                    } else {
+                        $d1 = $dist_tmp2;
+                        $j1 = 1;
+                        $d2 = $dist_tmp3;
+                        $j2 = 2;
+                        $d3 = $dist_tmp1;
+                        $j3 = 0;
+                    }
+                } else {
+                    $d1 = $dist_tmp2;
+                    $j1 = 1;
+                    $d2 = $dist_tmp1;
+                    $j2 = 0;
+                    $d3 = $dist_tmp3;
+                    $j3 = 2;
+                }
+            }
+            if (count($listeSiteNodaux) > 3) {
+                for ($i = 3; $i < count($listeSiteNodaux); $i++) {
+                    $d = $this->Distance($siteRef, $listeSiteNodaux[0]);
+                    $j = $i;
+                    if ($d < $d1) {
+                        $d3 = $d2;
+                        $d2 = $d1;
+                        $d1 = $d;
+                        $j3 = $j2;
+                        $j2 = $j1;
+                        $j1 = $j;
+                    } else {
+                        if ($d < $d2) {
+                            $d3 = $d2;
+                            $d2 = $d;
+                            $j3 = $j2;
+                            $j2 = $j;
+                        } else {
+                            if ($d < $d3) {
+                                $d3 = $d;
+                                $j3 = $j;
+                            }
+                        }
+                    }
+                }
+            }
+            $return_array = array(array("dist" => round($d1/1000, 3), "site" => $listeSiteNodaux[$j1]), array("dist" => round($d2/1000, 3), "site" => $listeSiteNodaux[$j2]), array("dist" => round($d3/1000, 3), "site" => $listeSiteNodaux[$j3]));
+        } else {
+            $return_array = array();
+            foreach ($listeSiteNodaux as $nodalSite) {
+                $return_array[] = array("dist" => round($this->Distance($siteRef, $nodalSite)/1000, 3), "site" => $nodalSite);
+            }
+        }
+        return $return_array;
+    }
+
+    public function Distance(Site $siteA, Site $siteB) {
+        $R = 6378000; //Rayon de la terre en mètre
+        $lat_a = deg2rad($siteA->getLatitude());
+        $long_a = deg2rad($siteA->getLongitude());
+        $lat_b = deg2rad($siteB->getLatitude());
+        $long_b = deg2rad($siteB->getLongitude());
+
+        return $R * acos(sin($lat_a) * sin($lat_b) + cos($long_b - $long_a) * cos($lat_b) * cos($lat_a));
     }
 
     /**
@@ -106,7 +310,7 @@ class DefaultController extends Controller {
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($repositorySite->findOneBy(array('tNumber' => $site->getTNumber(), 'status' => 1))) {
-                return new JsonResponse(["success" => false, 'message' => 'Une site avec ce t-number existe dejà'], Response::HTTP_BAD_REQUEST);
+                return new JsonResponse(["success" => false, 'message' => 'A site with this t-number already exist'], Response::HTTP_BAD_REQUEST);
             }
             //***************gestion des equipements du site ************************** */
             $equipments = $site->getEquipments();
@@ -114,10 +318,10 @@ class DefaultController extends Controller {
                 $equipment->setSite($site);
             }
             $site->setSiteType(intval($request->get('site-type')));
-            
+
             $site = $repositorySite->saveSite($site);
-            
-            $view = View::create(["message" => 'Site ajouté avec succès']);
+
+            $view = View::create(["message" => 'Site successfully added']);
             $view->setFormat('json');
             return $view;
         } else {
@@ -126,8 +330,7 @@ class DefaultController extends Controller {
             return $view;
         }
     }
-    
-    
+
     /**
      * @Rest\View()
      * @Rest\Put("/sites/{id}", name="site_update", options={ "method_prefix" = false, "expose" = true  })
@@ -145,22 +348,21 @@ class DefaultController extends Controller {
         $repositoryEquipment = $this->getDoctrine()->getManager()->getRepository('AppBundle:Equipment');
         $originalEquipments = new \Doctrine\Common\Collections\ArrayCollection();
         if (empty($site)) {
-            return new JsonResponse(['message' => 'Site introuvable'], Response::HTTP_NOT_FOUND);
+            return new JsonResponse(['message' => 'Site not found'], Response::HTTP_NOT_FOUND);
         }
-        
+
         foreach ($site->getEquipments() as $equipment) {
             $originalEquipments->add($equipment);
         }
-        
+        $oldSiteType = $site->getSiteType();
 
         $form = $this->createForm('AppBundle\Form\SiteType', $site, array('method' => 'PUT'));
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $siteUnique = $repositorySite->findOneBy(array('tNumber' => $site->getTNumber(), 'status' => 1));
             if ($siteUnique && $siteUnique->getId() != $site->getId()) {
-                return new JsonResponse(["success" => false, 'message' => 'Une site avec ce t-number existe dejà'], Response::HTTP_BAD_REQUEST);
+                return new JsonResponse(["success" => false, 'message' => 'A site with this t-number already exist'], Response::HTTP_BAD_REQUEST);
             }
             //***************gestion des abonnés de l'site ************************** */
             // remove the relationship between the Site and the Equipments
@@ -179,10 +381,25 @@ class DefaultController extends Controller {
                 $equipment->setSite($site);
             }
             $site->setSiteType(intval($request->get('site-type')));
-            
+
+            if ($site->getSiteType() !== $oldSiteType) {
+                if ($oldSiteType == 1) {
+                    $nodalSite = $site->getNodalSite();
+                    $nodalSite->removeEndSite($site);
+                    $repositorySite->updateSite($nodalSite);
+                    $site->setNodalSite(null);
+                } else {
+                    $endSites = $site->getEndSites();
+                    foreach ($endSites as $endSite) {
+                        $endSite->setNodalSite(null);
+                        $site->removeEndSite($endSite);
+                        $repositorySite->updateSite($endSite);
+                    }
+                }
+            }
             $site = $repositorySite->updateSite($site);
-            
-            $view = View::create(["message" => 'Site modifié avec succès',]);
+
+            $view = View::create(["message" => 'Site successfully modified']);
             $view->setFormat('json');
             return $view;
         } else {
@@ -192,11 +409,6 @@ class DefaultController extends Controller {
             return $view;
         }
     }
-    
-    
-    
-    
-    
 
     /**
      * @Rest\View()
@@ -283,7 +495,7 @@ class DefaultController extends Controller {
                     'user' => $user,
         ));
     }
-    
+
     /**
      * @Rest\View()
      * @Rest\Get("/view-profile", name="view_profile", options={ "method_prefix" = false, "expose" = true })

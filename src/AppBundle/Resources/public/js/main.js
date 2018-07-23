@@ -7,8 +7,10 @@ $(document).ready(function () {
             })
             ;
 
-    var d = new Date();
-//    $('.ui.menu.top_menu .ui.container .home_left_menu .item:last-child').html(d.toDateString());
+    $('.menu .item')
+            .tab()
+            ;
+
     $('.ui.sidebar')
             .sidebar({
                 //context: $('.bottom.segment'),
@@ -17,7 +19,9 @@ $(document).ready(function () {
             .sidebar('setting', 'transition', 'overlay')
             .sidebar('attach events', '.toc.item')
             ;
-
+    $('.popup')
+            .popup()
+            ;
 //    $('.ui.sidebar').click(function(){
 //        if($(this).sidebar("isvisible"))
 //        $('.ui.sidebar').sidebar("show");

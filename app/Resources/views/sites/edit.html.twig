@@ -2,7 +2,7 @@
 <div class="ui small modal" id="edit_site">
     <i class="close icon"></i>
     <div class="header">
-        Update a site
+        Edit the site << {{site.siteName}} >>
     </div>
     <div class="content">
         {{ form_start(form, {'method': 'PUT', 'action':  path('site_update',{'id': site.id}), 'attr': {'class': 'ui mini form', 'id': 'edit_site_form'} }) }}
@@ -48,8 +48,8 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Cost</th>
-                    <th>Life duration</th>
+                    <th>Cost(FCFA)</th>
+                    <th>Lifetime(Year)</th>
                     <th class="right aligned">Action</th>
                 </tr>
             </thead>
@@ -83,8 +83,8 @@
         </form>
     </div>
     <div class="actions">
-        <a id="cancel_edit_site" class="ui black deny mini button">Annuler</a>
-        <a id="submit_edit_site" class="ui yellow mini button">Sauvegarder</a>
+        <a id="cancel_edit_site" class="ui black deny mini button">Cancel</a>
+        <a id="submit_edit_site" class="ui yellow mini button">Save</a>
     </div>
 </div>
 <script>
@@ -112,7 +112,7 @@
     }
 
     function addEquipmentFormDeleteLink($subscriberFormTr) {
-        var $removeFormA = $('<td class="right aligned"><a class="ui mini red compact icon button" data-tooltip="Supprimer" data-position="bottom center" data-inverted="" data-variation="mini"><i class="trash icon"></i></a></td>');
+        var $removeFormA = $('<td class="right aligned"><a class="ui mini red compact icon button" data-tooltip="Delete" data-position="bottom center" data-inverted="" data-variation="mini"><i class="trash icon"></i></a></td>');
         $subscriberFormTr.append($removeFormA);
         $removeFormA.on('click', function (e) {
             // prevent the link from creating a "#" on the URL
@@ -126,7 +126,7 @@
     var $collectionEquipment;
 
     // setup an "add a subscriber" link
-    var $addEquipmentLink = $('<a class="ui mini yellow button" ><i class="plus icon"></i> Ajouter</a>');
+    var $addEquipmentLink = $('<a class="ui mini yellow button" ><i class="plus icon"></i> Add</a>');
     var $newLinkTr = $('<tr></tr>').append($addEquipmentLink);
 
     jQuery(document).ready(function () {

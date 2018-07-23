@@ -136,30 +136,52 @@
 .ui.small.modal .content .ui.form .ui.dividing.header, .ui.tiny.modal .content .ui.form .ui.dividing.header {
   font-size: 14px !important;
 }
-/* line 130, ../../sass/imports/content.scss */
+/* line 129, ../../sass/imports/content.scss */
+.ui.small.modal .content .ui.form .field > label, .ui.tiny.modal .content .ui.form .field > label {
+  font-size: 12px !important;
+}
+/* line 132, ../../sass/imports/content.scss */
+.ui.small.modal .content .ui.form .field > span, .ui.tiny.modal .content .ui.form .field > span {
+  font-size: 12px !important;
+}
+/* line 136, ../../sass/imports/content.scss */
 .ui.small.modal .content .ui.form .ui.field label, .ui.tiny.modal .content .ui.form .ui.field label {
   font-size: 12px !important;
 }
-
-/* line 137, ../../sass/imports/content.scss */
-.ui.tiny.form .ui.dividing.header {
-  font-size: 14px !important;
+/* line 139, ../../sass/imports/content.scss */
+.ui.small.modal .content .ui.form .grouped.fields label, .ui.tiny.modal .content .ui.form .grouped.fields label {
+  font-size: 14px;
 }
-/* line 141, ../../sass/imports/content.scss */
-.ui.tiny.form .field label {
-  font-size: 14px !important;
-}
-
-/* line 146, ../../sass/imports/content.scss */
-.ui.table tr th {
-  font-size: 12px;
-}
-/* line 149, ../../sass/imports/content.scss */
-.ui.table tr td {
+/* line 144, ../../sass/imports/content.scss */
+.ui.small.modal .content .ui.form .grouped.fields .field .ui.radio.checkbox label, .ui.tiny.modal .content .ui.form .grouped.fields .field .ui.radio.checkbox label {
   font-size: 12px;
 }
 
 /* line 155, ../../sass/imports/content.scss */
+.ui.tiny.form .ui.dividing.header {
+  font-size: 14px !important;
+}
+/* line 159, ../../sass/imports/content.scss */
+.ui.tiny.form .field label {
+  font-size: 14px !important;
+}
+
+/* line 164, ../../sass/imports/content.scss */
+.ui.table tr th {
+  font-size: 12px;
+}
+/* line 167, ../../sass/imports/content.scss */
+.ui.table tr td {
+  font-size: 12px;
+}
+
+/* line 172, ../../sass/imports/content.scss */
+.ui.tab.segment.site_map_list_content {
+  box-shadow: none;
+  border: none;
+}
+
+/* line 177, ../../sass/imports/content.scss */
 .float_button.ui.yellow.button {
   color: #080600;
   bottom: 45px;

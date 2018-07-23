@@ -12,70 +12,98 @@
         </div>
     </div>
     <div class='ui fluid card' style="box-shadow: none;">
-        <table class="ui celled small table">
-            <thead>
-                <tr><th>T-Number</th>
-                    <th>Name</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                    <th>City</th>
-                    <th>Type</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            {%if sites%}
-                <tbody>
-                    {%for site in sites%}
-                        <tr id="site_{{site.id}}">
-                            <td>{{site.tNumber}}</td>
-                            <td>{{site.siteName}}</td>
-                            <td>{{site.latitude}}</td>
-                            <td>{{site.longitude}}</td>
-                            <td>{{site.siteCity}}</td>
-                            <td>{{site.siteType}}</td>
-                            <td>
-                                <div class="ui pagination mini menu">
-                                    <a onclick="edit_site({{site.id}});" class="icon edit_site_btn item">
-                                        <i class="blue write icon"></i>
-                                    </a>
-                                    <a onclick="delete_site({{site.id}});" class="icon delete_site_btn item">
-                                        <i class="red trash icon"></i>
-                                    </a>
-                                </div>
+        <div class="ui top attached stackable pointing secondary tabular menu site_map_list_content_menu">
+            <a class="map popup icon item" data-content="Show as a map" data-tab="map">
+                <i class="map icon"></i>
+            </a>
+            <a class="th list popup icon active item" data-content="Show as a list" data-tab="list">
+                <i class="th list icon"></i>
+            </a>
+        </div>
+        <div class="ui tab segmen site_map_list_contentt" data-tab="map">
+        </div>
+        <div class="ui active tab segment site_map_list_content" data-tab="list">
+            <table class="ui celled small table">
+                <thead>
+                    <tr><th>T-Number</th>
+                        <th>Name</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>City</th>
+                        <th>Type</th>
+                        <th><i class="linkify icon"></i> Nodal link</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                {%if sites%}
+                    <tbody>
+                        {%for site in sites%}
+                            <tr id="site_{{site.id}}">
+                                <td>{{site.tNumber}}</td>
+                                <td>{{site.siteName}}</td>
+                                <td>{{site.latitude}}</td>
+                                <td>{{site.longitude}}</td>
+                                <td>{{site.siteCity}}</td>
+                                <td>{{site.siteType|site_type}}</td>
+                                <td>{%if site.siteType == 1 %} {%if site.nodalSite %} {{ site.nodalSite.siteName}} {%endif %} {%endif %}</td>
+                                <td>
+                                    <div class="ui pagination mini menu">
+                                        <a onclick="show_site({{site.id}});" class="popup icon show_site_btn item" data-content="View details">
+                                            <i class="eye icon"></i>
+                                        </a>
+                                        <a onclick="edit_site({{site.id}});" class="popup icon edit_site_btn item" data-content="Edit this site">
+                                            <i class="blue edit icon"></i>
+                                        </a>
+                                        <a onclick="delete_site({{site.id}});" class="popup icon delete_site_btn item" data-content="Delete this site">
+                                            <i class="red trash icon"></i>
+                                        </a>
+                                        {%if site.siteType == 1 %}
+                                            <a onclick="assign_node({{site.id}});" class="popup icon add_site_link_btn item" data-content="Assign a nodal site">
+                                                <i class="yellow linkify icon"></i>
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                        {%endfor%} 
 
-                            </td>
+                    </tbody>
+                    {%if total_pages>1 and total_pages >= page %}
+                        <tfoot>
+                            <tr><th colspan="8">
+                                    <div class="ui right floated pagination mini menu">
+                                        {%if page > 1 %}
+                                            <a href="{{path(app.request.attributes.get('_route'), route_param_search_query|merge({page: page-1}))}}" class="icon item">
+                                                <i class="left chevron icon"></i>
+                                            </a>
+                                        {% endif %}
+                                        {% for i in start..end %}
+                                            {% if i== page %}
+                                                <a href="{{path(app.request.attributes.get('_route'), route_param_search_query|merge({page: i}))}}" class="active item">{{i}}</a>
+                                            {% else %}
+                                                <a href="{{path(app.request.attributes.get('_route'), route_param_search_query|merge({page: i}))}}" class="item">{{i}}</a>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {%if page <= total_pages-1 %}
+                                            <a href="{{path(app.request.attributes.get('_route'), route_param_search_query|merge({page: page+1}))}}" class="icon item">
+                                                <i class="right chevron icon"></i>
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    {% endif %}
+                {%else%}
+                    <tfoot>
+                        <tr><th colspan="7">
+                                <div class="center aligned">No site added at this moment</div>
+                            </th>
                         </tr>
-                    {%endfor%} 
-
-                </tbody>
-                {#<tfoot>
-                    <tr><th colspan="7">
-                            {#<div class="ui left floated pagination mini menu">
-                                <a class="icon item">
-                                    <i class="left chevron icon"></i>
-                                </a>
-                                <a class="item">1</a>
-                                <a class="item">2</a>
-                                <a class="item">3</a>
-                                <a class="item">4</a>
-                                <a class="icon item">
-                                    <i class="right chevron icon"></i>
-                                </a>
-                            </div>
-                                                        <button id="add_site_btn" class="ui right floated green mini icon button" data-tooltip="Add a site" data-position="bottom center" data-inverted="" data-variation="mini"><i class='plus icon'></i></button>
-                        </th>
-                    </tr>
-                </tfoot>#}
-            {%else%}
-                <tfoot>
-                    <tr><th colspan="7">
-                            <div class="center aligned">No site added at this moment</div>
-                        </th>
-                    </tr>
-                </tfoot>
-            {%endif%}
-        </table>
-
+                    </tfoot>
+                {%endif%}
+            </table>
+        </div>
     </div>
     {% block block_add_new %}
         <div class="ui small modal" id="add_site">
@@ -127,12 +155,12 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Cost</th>
-                            <th>Lifetime</th>
+                            <th>Cost(FCFA)</th>
+                            <th>Lifetime(Year)</th>
                             <th class="right aligned">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="equipments" data-prototype="{{ forms.equipment_prototype(form.equipments.vars.prototype)|e }}">
+                    <tbody class="add-equipments" data-prototype="{{ forms.equipment_prototype(form.equipments.vars.prototype)|e }}">
                         {% for equipment in form.equipments %}
                             <tr>
                                 {{ forms.equipment_prototype(equipment) }}
@@ -162,8 +190,8 @@
                 </form>
             </div>
             <div class="actions">
-                <a id="cancel_add_site" class="ui black deny mini button">Annuler</a>
-                <a id="submit_site" class="ui yellow mini button">Sauvegarder</a>
+                <a id="cancel_add_site" class="ui black deny mini button">Cancel</a>
+                <a id="submit_site" class="ui yellow mini button">Save</a>
             </div>
         </div>
         <button id="add_site_btn" class="float_button circular ui huge yellow icon button" data-tooltip="Add a site" data-position="top center" data-inverted="">
@@ -180,18 +208,18 @@
         <div id="confirm_delete_site" class="ui tiny modal">
             <i class="close icon"></i>
             <div class="header">
-                Confirmation de la suppression
+                Confirm delete
             </div>
             <div class="content">
-                <p>Vous êtes sur le point de supprimer ce site. </p>
-                <p>Voulez-vous vraiment réaliser cette action ?</p>
+                <p>You are about to delete this site. </p>
+                <p>Do you really want to take this action?</p>
             </div>
             <div class="actions">
                 <div class="ui red tiny deny button">
-                    Non
+                    No
                 </div>
                 <div id="execute_delete_site" i class="ui green tiny right labeled icon button">
-                    Oui
+                    Yes
                     <i class="checkmark icon"></i>
                 </div>
             </div>
@@ -203,31 +231,31 @@
     {{ parent()}}
     <script type="text/javascript" src="{{ asset('bundles/app/js/site.js')}}"></script>
     <script>
-        function addEquipmentForm($collectionEquipment, $newLinkTr) {
+        function addEquipment_addForm($collectionEquipment_add, $newLinkTr) {
             // Get the data-prototype explained earlier
-            var prototype = $collectionEquipment.data('prototype');
+            var prototype = $collectionEquipment_add.data('prototype');
 
             // get the new index
-            var index = $collectionEquipment.data('index');
+            var index = $collectionEquipment_add.data('index');
 
             // Replace '__name__' in the prototype's HTML to
             // instead be a number based on how many items we have
             var $newForm = prototype.replace(/__name__/g, index);
 
             // increase the index with one for the next item
-            $collectionEquipment.data('index', index + 1);
+            $collectionEquipment_add.data('index', index + 1);
 
             // Display the form in the page in an li, before the "Add a subscriber" link li
             var $newFormTr = $('<tr></tr>').append($newForm);
             $newLinkTr.before($newFormTr);
-            $('.ui.search.dropdown').dropdown({
+            $('.ui.dropdown').dropdown({
                 on: 'click'
             });
-            addEquipmentFormDeleteLink($newFormTr);
+            addEquipment_addFormDeleteLink($newFormTr);
         }
 
-        function addEquipmentFormDeleteLink($subscriberFormTr) {
-            var $removeFormA = $('<td class="right aligned"><a class="ui mini red compact icon button" data-tooltip="Supprimer" data-position="bottom center" data-inverted="" data-variation="mini"><i class="trash icon"></i></a></td>');
+        function addEquipment_addFormDeleteLink($subscriberFormTr) {
+            var $removeFormA = $('<td class="right aligned"><div id="delete_Equipment" class="ui mini red compact icon button" data-tooltip="Delete" data-position="bottom center" data-inverted="" data-variation="mini"><i class="trash icon"></i></div></td>');
             $subscriberFormTr.append($removeFormA);
             $removeFormA.on('click', function (e) {
                 // prevent the link from creating a "#" on the URL
@@ -238,41 +266,41 @@
             });
         }
 
-        var $collectionEquipment;
+        var $collectionEquipment_add;
 
         // setup an "add a subscriber" link
-        var $addEquipmentLink = $('<a class="ui mini yellow button" ><i class="plus icon"></i> Ajouter</a>');
-        var $newLinkTr = $('<tr></tr>').append($addEquipmentLink);
+        var $addEquipment_addLink = $('<div id="add_Equipment" class="ui mini yellow button" ><i class="plus icon"></i> Add</div>');
+        var $newLinkTr = $('<tr></tr>').append($addEquipment_addLink);
 
         jQuery(document).ready(function () {
             /******** suppression des equipments *********/
             // Get the ul that holds the collection of equipments
-            $collectionEquipment = $('tbody.equipments');
+            $collectionEquipment_add = $('tbody.add-equipments');
 
             // add a delete link to all of the existing subscriber form li elements
-            $collectionEquipment.find('tr').each(function () {
-                addEquipmentFormDeleteLink($(this));
+            $collectionEquipment_add.find('tr').each(function () {
+                addEquipment_addFormDeleteLink($(this));
             });
 
 
             /******** Ajout des equipments *********/
 
             // Get the ul that holds the collection of equipments
-            $collectionEquipment = $('tbody.equipments');
+            $collectionEquipment_add = $('tbody.add-equipments');
 
             // add the "add a subscriber" anchor and li to the equipments ul
-            $collectionEquipment.append($newLinkTr);
+            $collectionEquipment_add.append($newLinkTr);
 
             // count the current form inputs we have (e.g. 2), use that as the new
             // index when inserting a new item (e.g. 2)
-            $collectionEquipment.data('index', $collectionEquipment.find(':input').length);
+            $collectionEquipment_add.data('index', $collectionEquipment_add.find(':input').length);
 
-            $addEquipmentLink.on('click', function (e) {
+            $addEquipment_addLink.on('click', function (e) {
                 // prevent the link from creating a "#" on the URL
                 e.preventDefault();
 
                 // add a new subscriber form (see next code block)
-                addEquipmentForm($collectionEquipment, $newLinkTr);
+                addEquipment_addForm($collectionEquipment_add, $newLinkTr);
             });
         });
     </script>

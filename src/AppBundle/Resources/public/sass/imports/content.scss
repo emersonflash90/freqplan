@@ -126,8 +126,26 @@
             .ui.dividing.header{
                 font-size: 14px!important;
             }
+            .field>label{
+                font-size: 12px!important;
+            }
+            .field>span{
+                font-size: 12px!important;
+            }
             .ui.field{
                 label{font-size: 12px!important;}
+            }
+            .grouped.fields{
+                label{
+                    font-size: 14px;
+                }
+                .field{
+                    .ui.radio.checkbox{
+                        label{
+                            font-size: 12px;
+                        }
+                    }
+                }
             }
         }
     }
@@ -151,6 +169,10 @@
     }
 }
 
+.ui.tab.segment.site_map_list_content{
+    box-shadow: none;
+    border:none;
+}
 
 .float_button.ui.yellow.button{
     color: #080600;

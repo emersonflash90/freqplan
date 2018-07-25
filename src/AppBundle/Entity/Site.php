@@ -72,6 +72,13 @@ class Site extends GeneralClass {
     /**
      * @var string
      *
+     * @ORM\Column(name="frequence_number", type="string", length=255, nullable=true)
+     */
+    private $frequenceNumber;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="polarisation", type="string", length=255, nullable=true)
      */
     private $polarisation;
@@ -286,6 +293,28 @@ class Site extends GeneralClass {
      */
     public function getSiteType() {
         return $this->siteType;
+    }
+    
+    /**
+     * Set frequenceNumber
+     *
+     * @param string frequenceNumber
+     *
+     * @return Site
+     */
+    public function setFrequenceNumber($frequenceNumber) {
+        $this->frequenceNumber = $frequenceNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get frequenceNumber
+     *
+     * @return string
+     */
+    public function getFrequenceNumber() {
+        return $this->frequenceNumber;
     }
     
     /**

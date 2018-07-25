@@ -23,6 +23,10 @@
         <div class="ui tab segmen site_map_list_contentt" data-tab="map">
         </div>
         <div class="ui active tab segment site_map_list_content" data-tab="list">
+            <div class="ui right floated basic icon buttons" style="margin-bottom: 5px;">
+                <a class="ui button" data-content="Import an Excel file"><i class="upload icon"></i></a>
+                <a class="ui button" data-content="Download as Excel file"><i class="download icon"></i></a>
+            </div>
             <table class="ui celled small table">
                 <thead>
                     <tr><th>T-Number</th>
@@ -231,7 +235,7 @@
     {{ parent()}}
     <script type="text/javascript" src="{{ asset('bundles/app/js/site.js')}}"></script>
     <script>
-        function addEquipment_addForm($collectionEquipment_add, $newLinkTr) {
+        function addEquipment_addForm($collectionEquipment_add, $newLinkTrAdd) {
             // Get the data-prototype explained earlier
             var prototype = $collectionEquipment_add.data('prototype');
 
@@ -247,7 +251,7 @@
 
             // Display the form in the page in an li, before the "Add a subscriber" link li
             var $newFormTr = $('<tr></tr>').append($newForm);
-            $newLinkTr.before($newFormTr);
+            $newLinkTrAdd.before($newFormTr);
             $('.ui.dropdown').dropdown({
                 on: 'click'
             });
@@ -270,7 +274,7 @@
 
         // setup an "add a subscriber" link
         var $addEquipment_addLink = $('<div id="add_Equipment" class="ui mini yellow button" ><i class="plus icon"></i> Add</div>');
-        var $newLinkTr = $('<tr></tr>').append($addEquipment_addLink);
+        var $newLinkTrAdd = $('<tr></tr>').append($addEquipment_addLink);
 
         jQuery(document).ready(function () {
             /******** suppression des equipments *********/
@@ -289,7 +293,7 @@
             $collectionEquipment_add = $('tbody.add-equipments');
 
             // add the "add a subscriber" anchor and li to the equipments ul
-            $collectionEquipment_add.append($newLinkTr);
+            $collectionEquipment_add.append($newLinkTrAdd);
 
             // count the current form inputs we have (e.g. 2), use that as the new
             // index when inserting a new item (e.g. 2)
@@ -300,7 +304,7 @@
                 e.preventDefault();
 
                 // add a new subscriber form (see next code block)
-                addEquipment_addForm($collectionEquipment_add, $newLinkTr);
+                addEquipment_addForm($collectionEquipment_add, $newLinkTrAdd);
             });
         });
     </script>

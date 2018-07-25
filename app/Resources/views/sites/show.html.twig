@@ -47,7 +47,7 @@
                     </select>
                 </div>
             </div>
-            <h4 class="ui dividing header">Site Equipments</h4>
+            <h4 class="ui dividing header">Site equipments</h4>
             <table class="ui very basic table">
                 <thead>
                     <tr>
@@ -87,89 +87,95 @@
         </div>
         <div id="block_details">
             <h4 class="ui dividing header" style="margin-top: 0px;">Site informations</h4>
-            <div class="two fields">
-                <div class="field">
-                    <label>T-Number : </label> 
+            <div class="ui two column stackable grid">
+                <div class="column">
+                    <div class="two fields">
+                        <div class="field">
+                            <label>T-Number : </label> 
+                        </div>
+                        <div class="field">
+                            <span> {{ site.tNumber}}</span>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Name : </label> 
+                        </div>
+                        <div class="field">
+                            <span> {{ site.siteName}}</span>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Latitude : </label> 
+                        </div>
+                        <div class="field">
+                            <span> {{ site.latitude}}</span>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Longitude : </label> 
+                        </div>
+                        <div class="field">
+                            <span> {{ site.longitude}}</span>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>City : </label> 
+                        </div>
+                        <div class="field">
+                            <span> {{ site.siteCity}}</span>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Type : </label> 
+                        </div>
+                        <div class="field">
+                            <span> {{ site.siteType|site_type}}</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="field">
-                    <span> {{ site.tNumber}}</span>
+                <div class="column">
+                    {%if site.siteType == 1 %}
+                        <div class="two fields">
+                            <div class="field">
+                                <label><i class="linkify icon"></i> Nodal site : </label> 
+                            </div>
+                            <div class="field">
+                                <span>{%if site.nodalSite %} {{ site.nodalSite.siteName}} {%endif %}</span>
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Azimut : </label> 
+                            </div>
+                            <div class="field">
+                                <span> {{ site.azimut}}°</span>
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Frequence : </label> 
+                            </div>
+                            <div class="field">
+                                <span> {{ site.frequenceNumber}}</span>
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Polarization : </label> 
+                            </div>
+                            <div class="field">
+                                <span> {{ site.polarisation}}</span>
+                            </div>
+                        </div>
+                    {%endif%}
                 </div>
             </div>
-            <div class="two fields">
-                <div class="field">
-                    <label>Name : </label> 
-                </div>
-                <div class="field">
-                    <span> {{ site.siteName}}</span>
-                </div>
-            </div>
-            <div class="two fields">
-                <div class="field">
-                    <label>Latitude : </label> 
-                </div>
-                <div class="field">
-                    <span> {{ site.latitude}}</span>
-                </div>
-            </div>
-            <div class="two fields">
-                <div class="field">
-                    <label>Longitude : </label> 
-                </div>
-                <div class="field">
-                    <span> {{ site.longitude}}</span>
-                </div>
-            </div>
-            <div class="two fields">
-                <div class="field">
-                    <label>City : </label> 
-                </div>
-                <div class="field">
-                    <span> {{ site.siteCity}}</span>
-                </div>
-            </div>
-            <div class="two fields">
-                <div class="field">
-                    <label>Type : </label> 
-                </div>
-                <div class="field">
-                    <span> {{ site.siteType|site_type}}</span>
-                </div>
-            </div>
-            {%if site.siteType == 1 %}
-                <div class="two fields">
-                    <div class="field">
-                        <label><i class="linkify icon"></i> Nodal site : </label> 
-                    </div>
-                    <div class="field">
-                        <span>{%if site.nodalSite %} {{ site.nodalSite.siteName}} {%endif %}</span>
-                    </div>
-                </div>
-                <div class="two fields">
-                    <div class="field">
-                        <label>Azimut : </label> 
-                    </div>
-                    <div class="field">
-                        <span> {{ site.azimut}}</span>
-                    </div>
-                </div>
-                <div class="two fields">
-                    <div class="field">
-                        <label>Frequence : </label> 
-                    </div>
-                    <div class="field">
-                        <span> {{ site.frequence}}</span>
-                    </div>
-                </div>
-                <div class="two fields">
-                    <div class="field">
-                        <label>Polarization : </label> 
-                    </div>
-                    <div class="field">
-                        <span> {{ site.polarisation}}</span>
-                    </div>
-                </div>
-            {%endif%}
-            <h4 class="ui dividing header">Site Equipments</h4>
+            <h4 class="ui dividing header">Site equipments</h4>
             <table class="ui very basic table">
                 <thead>
                     <tr>

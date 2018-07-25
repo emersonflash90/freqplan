@@ -178,6 +178,7 @@ function edit_site(id) {
             });
             $('#cancel_edit_site').click(function () {
 //                window.location.reload();
+                $('#edit_site_content').html("");
             });
             $('#edit_site.ui.modal').modal('show');
             execute_edit(id);
@@ -357,6 +358,7 @@ function assign_node(id) {
             });
             $('#cancel_assign_node').click(function () {
 //                window.location.reload();
+                $('#edit_site_content').html("");
             });
             $('#assign_node.ui.modal').modal('show');
             execute_assign_node(id);
@@ -555,6 +557,7 @@ function show_site(id) {
 
             $('#cancel_details_site').click(function () {
 //                window.location.reload();
+                $('#edit_site_content').html("");
             });
             $('#edit_site.ui.modal').modal('show');
             execute_edit(id);

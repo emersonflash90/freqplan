@@ -176,6 +176,7 @@ class DefaultController extends Controller {
         if ($request->isMethod("PUT")) {
             $node = intval($request->get("node"));
             $nodalSite = $repositorySite->find($node);
+            $site = $this->assignAzimutFrequenceAndPolarization($site, $nodalSite);
             $site->setNodalSite($nodalSite);
             $nodalSite->addEndSite($site);
 
@@ -190,6 +191,7 @@ class DefaultController extends Controller {
         }
     }
 
+    //get list of three nearby site of a site reference
     public function getSitesNearBy(Site $siteRef) {
         $repositorySite = $this->getDoctrine()->getManager()->getRepository('AppBundle:Site');
         $listeSiteNodaux = $repositorySite->findBy(array("siteType" => 2, "status" => 1));
@@ -275,16 +277,17 @@ class DefaultController extends Controller {
                     }
                 }
             }
-            $return_array = array(array("dist" => round($d1/1000, 3), "site" => $listeSiteNodaux[$j1]), array("dist" => round($d2/1000, 3), "site" => $listeSiteNodaux[$j2]), array("dist" => round($d3/1000, 3), "site" => $listeSiteNodaux[$j3]));
+            $return_array = array(array("dist" => round($d1 / 1000, 3), "site" => $listeSiteNodaux[$j1]), array("dist" => round($d2 / 1000, 3), "site" => $listeSiteNodaux[$j2]), array("dist" => round($d3 / 1000, 3), "site" => $listeSiteNodaux[$j3]));
         } else {
             $return_array = array();
             foreach ($listeSiteNodaux as $nodalSite) {
-                $return_array[] = array("dist" => round($this->Distance($siteRef, $nodalSite)/1000, 3), "site" => $nodalSite);
+                $return_array[] = array("dist" => round($this->Distance($siteRef, $nodalSite) / 1000, 3), "site" => $nodalSite);
             }
         }
         return $return_array;
     }
 
+    //calculate distance between two points with lat and long
     public function Distance(Site $siteA, Site $siteB) {
         $R = 6378000; //Rayon de la terre en mètre
         $lat_a = deg2rad($siteA->getLatitude());
@@ -293,6 +296,91 @@ class DefaultController extends Controller {
         $long_b = deg2rad($siteB->getLongitude());
 
         return $R * acos(sin($lat_a) * sin($lat_b) + cos($long_b - $long_a) * cos($lat_b) * cos($lat_a));
+    }
+
+    //calculate azimut between two points with lat and long
+    public function azimut(Site $site1, Site $site2) {
+        $X1 = deg2rad($site1->getLatitude());
+        $X2 = deg2rad($site2->getLatitude());
+        $Y = deg2rad($site1->getLongitude() - $site2->getLongitude());
+        $dX = cos($X1) * sin($X2) - sin($X1) * cos($X2) * cos($Y);
+        $dY = cos($X2) * sin($Y);
+        return round(rad2deg(atan2($dX, $dY)), 2);
+    }
+
+    //Assign Azimut, Frequence and Polarization to the end site
+    public function assignAzimutFrequenceAndPolarization(Site $endSite, Site $nodalSite) {
+        $otherEndSites = $nodalSite->getEndSites();
+        if ($otherEndSites->contains($endSite)) {
+            $otherEndSites->removeElement($endSite);
+        }
+        $azimut = $this->azimut($endSite, $nodalSite);
+        $endSite->setAzimut($azimut);
+        if (count($otherEndSites) == 0) {
+            $endSite->setFrequenceNumber("F1");
+            $endSite->setPolarisation("V");
+        } else {
+            $azimutDifferencesF1 = array();
+            $azimutDifferencesF2 = array();
+            $azimutDifferencesF3 = array();
+            $azimutDifferencesF4 = array();
+            //Calcule des tableaux des différences d'azimut entre le nouveau end site et les autres end site du nodal site.
+            //regroupés par les 4 fréquences
+            foreach ($otherEndSites as $otherEndSite) {
+                if ($otherEndSite->getFrequenceNumber() == "F1") {
+                    $azimutDifferencesF1[] = abs($otherEndSite->setAzimut() - $azimut);
+                }
+                if ($otherEndSite->getFrequenceNumber() == "F2") {
+                    $azimutDifferencesF2[] = abs($otherEndSite->setAzimut() - $azimut);
+                }
+                if ($otherEndSite->getFrequenceNumber() == "F3") {
+                    $azimutDifferencesF3[] = abs($otherEndSite->setAzimut() - $azimut);
+                }
+                if ($otherEndSite->getFrequenceNumber() == "F4") {
+                    $azimutDifferencesF4[] = abs($otherEndSite->setAzimut() - $azimut);
+                }
+            }
+            $azimutDifferences = array($azimutDifferencesF1, $azimutDifferencesF2, $azimutDifferencesF3, $azimutDifferencesF4);
+            $i = 0;
+            while ($i < 4) {
+                $azimutDifferencesFreq = $azimutDifferences[$i];
+                $freq = "F" . $i + 1;
+                //Utilisation du tableaux des sites de frequence Fi
+                if (count($azimutDifferencesF1) > 0) {
+                    $nDiffAzimutInf45 = 0;
+                    $nDiffAzimutIn45_90 = 0;
+                    $nDiffAzimutSup90 = 0;
+                    $endSite->setFrequenceNumber($freq);
+                    $endSite->setPolarisation("V");
+                    foreach ($azimutDifferencesFreq as $azimutDiff) {
+                        if ($azimutDiff < 45) {
+                            $nDiffAzimutInf45++;
+                        } elseif ($azimutDiff >= 45 && $azimutDiff <= 90) {
+                            $nDiffAzimutIn45_90++;
+                        } elseif ($azimutDiff > 90) {
+                            $nDiffAzimutSup90++;
+                        }
+                        if ($nDiffAzimutInf45 == 1) {
+                            break;
+                        }
+                        if ($nDiffAzimutIn45_90 >= 2) {
+                            break;
+                        }
+                    }
+                    if ($nDiffAzimutIn45_90 == 1) {
+                        $endSite->setFrequenceNumber($freq);
+                        $endSite->setPolarisation("H");
+                        return $endSite;
+                    } elseif ($nDiffAzimutSup90 == count($azimutDifferencesFreq)) {
+                        $endSite->setFrequenceNumber($freq);
+                        $endSite->setPolarisation("V");
+                        return $endSite;
+                    }
+                }
+                $i++;
+            }
+        }
+        return $endSite;
     }
 
     /**

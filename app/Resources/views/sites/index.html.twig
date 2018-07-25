@@ -4,13 +4,13 @@
 {% block title %}Sites{% endblock %}
 {% block active_item_sites %}active_item{% endblock %}
 {% block content %}
-    <div id="nav_menu" class="ui tiny menu">
+    {#<div id="nav_menu" class="ui tiny menu">
         <div class="left menu">
             <a class="item" href="">Home</a>
             <div class="item" style="padding-left: 0; padding-right: 0;"><i class="small right chevron icon divider"></i></div>
             <div class="item">Sites</div>
         </div>
-    </div>
+    </div>#}
     <div class='ui fluid card' style="box-shadow: none;">
         <div class="ui top attached stackable pointing secondary tabular menu site_map_list_content_menu">
             <a class="map popup icon item" data-content="Show as a map" data-tab="map">
@@ -20,7 +20,7 @@
                 <i class="th list icon"></i>
             </a>
         </div>
-        <div class="ui tab segmen site_map_list_contentt" data-tab="map">
+        <div id="map" class="ui tab segmen site_map_list_contentt" data-tab="map">
         </div>
         <div class="ui active tab segment site_map_list_content" data-tab="list">
             <div class="ui right floated basic icon buttons" style="margin-bottom: 5px;">
@@ -233,6 +233,8 @@
 
 {% block javascripts %}
     {{ parent()}}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA58VqIdLxXpQpPz3fYDYAw7MfW1hkz-7w"
+    async defer></script>
     <script type="text/javascript" src="{{ asset('bundles/app/js/site.js')}}"></script>
     <script>
         function addEquipment_addForm($collectionEquipment_add, $newLinkTrAdd) {
@@ -305,6 +307,108 @@
 
                 // add a new subscriber form (see next code block)
                 addEquipment_addForm($collectionEquipment_add, $newLinkTrAdd);
+            });
+
+            $.ajax({
+                type: 'GET',
+                url: Routing.generate('sites_list_for_map'),
+                dataType: 'json',
+                beforeSend: function () {
+                    $('#map_loading').show();
+                },
+                statusCode: {
+                    500: function (xhr) {
+
+                    },
+                    404: function (response, textStatus, jqXHR) {
+                        $('#message_error>div.header').html(response.responseJSON.message);
+                        $('#message_error').show();
+                    }
+                },
+                success: function (response, textStatus, jqXHR) {
+                    // Creating a new map
+                    var map = new google.maps.Map(document.getElementById("map"), {
+                        center: new google.maps.LatLng(57.9, 14.6),
+                        zoom: 6,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    });
+                    var sites = response.sites;
+                    var siteType= "N";
+                    for (var i = 0, length = sites.length; i < length; i++) {
+                        var site = sites[i];
+                        var latLng = new google.maps.LatLng(site.latitude, site.longitude);
+                        var description = "<div>T-number: " + site.tNumber + "</div><div>Name: " + site.siteName + "</div><div>Lat: " + site.latitude + "</div><div>Long: " + site.longitude + "</div><div>City: " + site.siteCity + "</div>";
+                        var urlMarker = "";
+                        if(site.siteType === 1){
+                            siteType = "E";
+                            description = description+"<div>Type :" + siteType + "</div>"+"<div>Freq: "+site.frequenceNumber+"<div>Pol: "+site.polarisation;
+                            var nodalSite = site.nodalSite;
+                            if(nodalSite !== null){
+                                var flightPlanCoordinates = [
+                                   {lat: site.latitude, lng: site.longitude},
+                                   {lat: nodalSite.latitude, lng: nodalSite.longitude}
+                                 ];
+                                 var flightPath = new google.maps.Polyline({
+                                   path: flightPlanCoordinates,
+                                   geodesic: true,
+                                   strokeColor: '#FF0000',
+                                   strokeOpacity: 1.0,
+                                   strokeWeight: 2
+                                 });
+                                 flightPath.setMap(map);
+                            }
+                            urlMarker ='{{asset('bundles/app/images/antenne2.jpg')}}';
+                         }else{
+                             description = description+"<div>Type :" + siteType + "</div>";
+                             urlMarker ='{{asset('bundles/app/images/antenne1.jpg')}}';
+                         }
+                         
+                        // Creating a marker and putting it on the map
+                        
+                        var image = {
+                            url: urlMarker,
+                            // This marker is 20 pixels wide by 32 pixels high.
+                            size: new google.maps.Size(32, 45),
+                            // The origin for this image is (0, 0).
+                            origin: new google.maps.Point(0, 0),
+                            // The anchor for this image is the base of the flagpole at (0, 32).
+                            anchor: new google.maps.Point(18, 42)
+                          };
+                          // Shapes define the clickable region of the icon. The type defines an HTML
+                          // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+                          // The final coordinate closes the poly by connecting to the first coordinate.
+                          var shape = {
+                            coords: [1, 1, 1, 20, 18, 20, 18, 1],
+                            type: 'poly'
+                          };
+                        
+                        var marker = new google.maps.Marker({
+                            position: latLng,
+                            map: map,
+                            icon: image,
+                            shape: shape,
+                            title: site.siteName
+                        });
+                        var infoWindow = new google.maps.InfoWindow();
+                        // Creating a closure to retain the correct data 
+                        //Note how I pass the current data in the loop into the closure (marker, data)
+                        
+                        (function (marker, description) {
+                            // Attaching a click event to the current marker
+                            google.maps.event.addListener(marker, "click", function (e) {
+                                infoWindow.setContent(description);
+                                infoWindow.open(map, marker);
+                            });
+
+                        })(marker, description);
+                        
+                    }
+                    console.log(response.sites);
+                    $('#map_loading').hide();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#map_loading').hide();
+                }
             });
         });
     </script>

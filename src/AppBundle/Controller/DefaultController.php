@@ -84,6 +84,21 @@ class DefaultController extends Controller {
     }
 
     /**
+     * @Rest\View()
+     * @Rest\Get("/sites/list-for-map" , name="sites_list_for_map", options={ "method_prefix" = false, "expose" = true })
+     * @param Request $request
+     */
+    public function sitesListForMapAction(Request $request) {
+        $site = new Site();
+        $em = $this->getDoctrine()->getManager();
+        $json = array();
+        $sites = $em->getRepository('AppBundle:Site')->getAll(null, null, null);
+        $view = View::create(['sites' => $sites]);
+        $view->setFormat('json');
+        return $view;
+    }
+
+    /**
      * @Rest\View(statusCode=Response::HTTP_OK)
      * @Rest\Delete("/sites/{id}", name="site_delete", options={ "method_prefix" = false, "expose" = true  })
      */

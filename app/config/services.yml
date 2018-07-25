@@ -33,3 +33,18 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    circular_reference_handler:
+        public: false
+        class: callback
+        factory: [AppBundle\Serializer\CircularHandlerFactory, getId]
+    serializer.normalizer.object:
+        class: Symfony\Component\Serializer\Normalizer\ObjectNormalizer
+        arguments: ["@serializer.mapping.class_metadata_factory", null, "@serializer.property_accessor"]
+        public: false
+        tags: [serializer.normalizer]
+        calls:
+            - method: setCircularReferenceLimit
+              arguments: [1]
+            - method: setCircularReferenceHandler
+              arguments: ["@circular_reference_handler"]
+    

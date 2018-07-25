@@ -130,11 +130,12 @@ function add_site() {
 }
 
 
-$(function () {
+$(document).ready(function () {
     add_site();
     $('#cancel_add_site').click(function () {
 //        window.location.reload();
     });
+    
 });
 
 function edit_site(id) {

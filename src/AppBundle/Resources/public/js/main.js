@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $('.ui.dropdown')
             .dropdown()
             ;
@@ -22,17 +23,8 @@ $(document).ready(function () {
     $('.popup')
             .popup()
             ;
-//    $('.ui.sidebar').click(function(){
-//        if($(this).sidebar("isvisible"))
-//        $('.ui.sidebar').sidebar("show");
-//    });
 
-//    $('#add_site_btn').click(function (e) {
-//        $('tr#add_site').show();
-//    });
-//    $('#cancel_save_site_btn').click(function (e) {
-//        $('tr#add_site').hide();
-//    });
+
     $('#login_form.ui.form')
             .form({
                 fields: {
@@ -148,6 +140,9 @@ $(document).ready(function () {
 //                .modal('show')
 //                ;
 //    });
+
+    
+
 });
 
 function edit_site(id_site) {

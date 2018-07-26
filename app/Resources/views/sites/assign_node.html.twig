@@ -1,0 +1,38 @@
+<div class="ui small modal" id="assign_node">
+    <i class="close icon"></i>
+    <div class="header">
+        Assign a node to the end site << {{site.siteName}} >>
+    </div>
+    <div class="content">
+        <form id="assign_node_form" method="PUT"  action="{{path('assign_node_put',{'id': site.id})}}" class="ui mini form">
+            <div class="grouped fields">
+                <label>Select a nodal site in the list below :</label>
+                {% for node in nodeList %}
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="node" value="{{node.site.id}}" {%if site.nodalSite and site.nodalSite.id == node.site.id %}checked="checked"{%endif %}>
+                            <label>{{node.site.siteName}} ({{node.dist}}km)</label>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="field">
+                <div id="server_error_message" class="ui small negative message" style="display:none">
+                    <i class="close icon"></i>
+                    <div id="server_error_content" class="header">Internal server error</div>
+                </div>
+                <div id="error_name_message" class="ui small error message" style="display: none">
+                    <i class="close icon"></i>
+                    <div id="error_name_header" class="header"></div>
+                    <ul id="error_name_list" class="list">
+
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <a id="cancel_assign_node" class="ui black deny mini button">Cancel</a>
+        <a id="submit_assign_node" class="ui yellow mini button">Assign</a>
+    </div>
+</div>

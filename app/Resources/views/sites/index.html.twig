@@ -19,14 +19,19 @@
             <a class="th list popup icon active item" data-content="Show as a list" data-tab="list">
                 <i class="th list icon"></i>
             </a>
+            <div class="right secondary menu">
+                <a class="upload popup icon item" data-content="Import a csv" data-tab="upload">
+                    <i class="upload icon"></i>
+                </a>
+                <a class="download popup icon item" data-content="Download csv" data-tab="download">
+                    <i class="download icon"></i> 
+                </a>
+            </div>
         </div>
-        <div id="map" class="ui tab segmen site_map_list_contentt" data-tab="map">
+        <div id="map" class="ui tab site_map_list_contentt" data-tab="map">
         </div>
         <div class="ui active tab segment site_map_list_content" data-tab="list">
-            <div class="ui right floated basic icon buttons" style="margin-bottom: 5px;">
-                <a class="ui button" data-content="Import an Excel file"><i class="upload icon"></i></a>
-                <a class="ui button" data-content="Download as Excel file"><i class="download icon"></i></a>
-            </div>
+
             <table class="ui celled small table">
                 <thead>
                     <tr><th>T-Number</th>
@@ -237,179 +242,182 @@
     async defer></script>
     <script type="text/javascript" src="{{ asset('bundles/app/js/site.js')}}"></script>
     <script>
-        function addEquipment_addForm($collectionEquipment_add, $newLinkTrAdd) {
-            // Get the data-prototype explained earlier
-            var prototype = $collectionEquipment_add.data('prototype');
+                                                function addEquipment_addForm($collectionEquipment_add, $newLinkTrAdd) {
+                                                    // Get the data-prototype explained earlier
+                                                    var prototype = $collectionEquipment_add.data('prototype');
 
-            // get the new index
-            var index = $collectionEquipment_add.data('index');
+                                                    // get the new index
+                                                    var index = $collectionEquipment_add.data('index');
 
-            // Replace '__name__' in the prototype's HTML to
-            // instead be a number based on how many items we have
-            var $newForm = prototype.replace(/__name__/g, index);
+                                                    // Replace '__name__' in the prototype's HTML to
+                                                    // instead be a number based on how many items we have
+                                                    var $newForm = prototype.replace(/__name__/g, index);
 
-            // increase the index with one for the next item
-            $collectionEquipment_add.data('index', index + 1);
+                                                    // increase the index with one for the next item
+                                                    $collectionEquipment_add.data('index', index + 1);
 
-            // Display the form in the page in an li, before the "Add a subscriber" link li
-            var $newFormTr = $('<tr></tr>').append($newForm);
-            $newLinkTrAdd.before($newFormTr);
-            $('.ui.dropdown').dropdown({
-                on: 'click'
-            });
-            addEquipment_addFormDeleteLink($newFormTr);
-        }
+                                                    // Display the form in the page in an li, before the "Add a subscriber" link li
+                                                    var $newFormTr = $('<tr></tr>').append($newForm);
+                                                    $newLinkTrAdd.before($newFormTr);
+                                                    $('.ui.dropdown').dropdown({
+                                                        on: 'click'
+                                                    });
+                                                    addEquipment_addFormDeleteLink($newFormTr);
+                                                }
 
-        function addEquipment_addFormDeleteLink($subscriberFormTr) {
-            var $removeFormA = $('<td class="right aligned"><div id="delete_Equipment" class="ui mini red compact icon button" data-tooltip="Delete" data-position="bottom center" data-inverted="" data-variation="mini"><i class="trash icon"></i></div></td>');
-            $subscriberFormTr.append($removeFormA);
-            $removeFormA.on('click', function (e) {
-                // prevent the link from creating a "#" on the URL
-                e.preventDefault();
+                                                function addEquipment_addFormDeleteLink($subscriberFormTr) {
+                                                    var $removeFormA = $('<td class="right aligned"><div id="delete_Equipment" class="ui mini red compact icon button" data-tooltip="Delete" data-position="bottom center" data-inverted="" data-variation="mini"><i class="trash icon"></i></div></td>');
+                                                    $subscriberFormTr.append($removeFormA);
+                                                    $removeFormA.on('click', function (e) {
+                                                        // prevent the link from creating a "#" on the URL
+                                                        e.preventDefault();
 
-                // remove the li for the subscriber form
-                $subscriberFormTr.remove();
-            });
-        }
+                                                        // remove the li for the subscriber form
+                                                        $subscriberFormTr.remove();
+                                                    });
+                                                }
 
-        var $collectionEquipment_add;
+                                                var $collectionEquipment_add;
 
-        // setup an "add a subscriber" link
-        var $addEquipment_addLink = $('<div id="add_Equipment" class="ui mini yellow button" ><i class="plus icon"></i> Add</div>');
-        var $newLinkTrAdd = $('<tr></tr>').append($addEquipment_addLink);
+                                                // setup an "add a subscriber" link
+                                                var $addEquipment_addLink = $('<div id="add_Equipment" class="ui mini yellow button" ><i class="plus icon"></i> Add</div>');
+                                                var $newLinkTrAdd = $('<tr></tr>').append($addEquipment_addLink);
 
-        jQuery(document).ready(function () {
-            /******** suppression des equipments *********/
-            // Get the ul that holds the collection of equipments
-            $collectionEquipment_add = $('tbody.add-equipments');
+                                                jQuery(document).ready(function () {
+                                                    /******** suppression des equipments *********/
+                                                    // Get the ul that holds the collection of equipments
+                                                    $collectionEquipment_add = $('tbody.add-equipments');
 
-            // add a delete link to all of the existing subscriber form li elements
-            $collectionEquipment_add.find('tr').each(function () {
-                addEquipment_addFormDeleteLink($(this));
-            });
+                                                    // add a delete link to all of the existing subscriber form li elements
+                                                    $collectionEquipment_add.find('tr').each(function () {
+                                                        addEquipment_addFormDeleteLink($(this));
+                                                    });
 
 
-            /******** Ajout des equipments *********/
+                                                    /******** Ajout des equipments *********/
 
-            // Get the ul that holds the collection of equipments
-            $collectionEquipment_add = $('tbody.add-equipments');
+                                                    // Get the ul that holds the collection of equipments
+                                                    $collectionEquipment_add = $('tbody.add-equipments');
 
-            // add the "add a subscriber" anchor and li to the equipments ul
-            $collectionEquipment_add.append($newLinkTrAdd);
+                                                    // add the "add a subscriber" anchor and li to the equipments ul
+                                                    $collectionEquipment_add.append($newLinkTrAdd);
 
-            // count the current form inputs we have (e.g. 2), use that as the new
-            // index when inserting a new item (e.g. 2)
-            $collectionEquipment_add.data('index', $collectionEquipment_add.find(':input').length);
+                                                    // count the current form inputs we have (e.g. 2), use that as the new
+                                                    // index when inserting a new item (e.g. 2)
+                                                    $collectionEquipment_add.data('index', $collectionEquipment_add.find(':input').length);
 
-            $addEquipment_addLink.on('click', function (e) {
-                // prevent the link from creating a "#" on the URL
-                e.preventDefault();
+                                                    $addEquipment_addLink.on('click', function (e) {
+                                                        // prevent the link from creating a "#" on the URL
+                                                        e.preventDefault();
 
-                // add a new subscriber form (see next code block)
-                addEquipment_addForm($collectionEquipment_add, $newLinkTrAdd);
-            });
+                                                        // add a new subscriber form (see next code block)
+                                                        addEquipment_addForm($collectionEquipment_add, $newLinkTrAdd);
+                                                    });
 
-            $.ajax({
-                type: 'GET',
-                url: Routing.generate('sites_list_for_map'),
-                dataType: 'json',
-                beforeSend: function () {
-                    $('#map_loading').show();
-                },
-                statusCode: {
-                    500: function (xhr) {
+                                                    $.ajax({
+                                                        type: 'GET',
+                                                        url: Routing.generate('sites_list_for_map'),
+                                                        dataType: 'json',
+                                                        beforeSend: function () {
+                                                            $('#map_loading').show();
+                                                        },
+                                                        statusCode: {
+                                                            500: function (xhr) {
 
-                    },
-                    404: function (response, textStatus, jqXHR) {
-                        $('#message_error>div.header').html(response.responseJSON.message);
-                        $('#message_error').show();
-                    }
-                },
-                success: function (response, textStatus, jqXHR) {
-                    // Creating a new map
-                    var map = new google.maps.Map(document.getElementById("map"), {
-                        center: new google.maps.LatLng(57.9, 14.6),
-                        zoom: 6,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    });
-                    var sites = response.sites;
-                    var siteType= "N";
-                    for (var i = 0, length = sites.length; i < length; i++) {
-                        var site = sites[i];
-                        var latLng = new google.maps.LatLng(site.latitude, site.longitude);
-                        var description = "<div>T-number: " + site.tNumber + "</div><div>Name: " + site.siteName + "</div><div>Lat: " + site.latitude + "</div><div>Long: " + site.longitude + "</div><div>City: " + site.siteCity + "</div>";
-                        var urlMarker = "";
-                        if(site.siteType === 1){
-                            siteType = "E";
-                            description = description+"<div>Type :" + siteType + "</div>"+"<div>Freq: "+site.frequenceNumber+"<div>Pol: "+site.polarisation;
-                            var nodalSite = site.nodalSite;
-                            if(nodalSite !== null){
-                                var flightPlanCoordinates = [
-                                   {lat: site.latitude, lng: site.longitude},
-                                   {lat: nodalSite.latitude, lng: nodalSite.longitude}
-                                 ];
-                                 var flightPath = new google.maps.Polyline({
-                                   path: flightPlanCoordinates,
-                                   geodesic: true,
-                                   strokeColor: '#FF0000',
-                                   strokeOpacity: 1.0,
-                                   strokeWeight: 2
-                                 });
-                                 flightPath.setMap(map);
-                            }
-                            urlMarker ='{{asset('bundles/app/images/antenne2.jpg')}}';
-                         }else{
-                             description = description+"<div>Type :" + siteType + "</div>";
-                             urlMarker ='{{asset('bundles/app/images/antenne1.jpg')}}';
-                         }
-                         
-                        // Creating a marker and putting it on the map
-                        
-                        var image = {
-                            url: urlMarker,
-                            // This marker is 20 pixels wide by 32 pixels high.
-                            size: new google.maps.Size(32, 45),
-                            // The origin for this image is (0, 0).
-                            origin: new google.maps.Point(0, 0),
-                            // The anchor for this image is the base of the flagpole at (0, 32).
-                            anchor: new google.maps.Point(18, 42)
-                          };
-                          // Shapes define the clickable region of the icon. The type defines an HTML
-                          // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-                          // The final coordinate closes the poly by connecting to the first coordinate.
-                          var shape = {
-                            coords: [1, 1, 1, 20, 18, 20, 18, 1],
-                            type: 'poly'
-                          };
-                        
-                        var marker = new google.maps.Marker({
-                            position: latLng,
-                            map: map,
-                            icon: image,
-                            shape: shape,
-                            title: site.siteName
-                        });
-                        var infoWindow = new google.maps.InfoWindow();
-                        // Creating a closure to retain the correct data 
-                        //Note how I pass the current data in the loop into the closure (marker, data)
-                        
-                        (function (marker, description) {
-                            // Attaching a click event to the current marker
-                            google.maps.event.addListener(marker, "click", function (e) {
-                                infoWindow.setContent(description);
-                                infoWindow.open(map, marker);
-                            });
+                                                            },
+                                                            404: function (response, textStatus, jqXHR) {
+                                                                $('#message_error>div.header').html(response.responseJSON.message);
+                                                                $('#message_error').show();
+                                                            }
+                                                        },
+                                                        success: function (response, textStatus, jqXHR) {
+                                                            // Creating a new map and initialize it on a zone where you want to add a marker
+                                                            //lat and long of Cameroon
+                                                            var zoneLat = 6.00;
+                                                            var zoneLng = 12.00;
+                                                            var map = new google.maps.Map(document.getElementById("map"), {
+                                                                center: new google.maps.LatLng(zoneLat, zoneLng),
+                                                                zoom: 6,
+                                                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                                                            });
+                                                            var sites = response.sites;
+                                                            var siteType = "N";
+                                                            for (var i = 0, length = sites.length; i < length; i++) {
+                                                                var site = sites[i];
+                                                                var latLng = new google.maps.LatLng(site.latitude, site.longitude);
+                                                                var description = "<div>T-number: " + site.tNumber + "</div><div>Name: " + site.siteName + "</div><div>Lat: " + site.latitude + "</div><div>Long: " + site.longitude + "</div><div>City: " + site.siteCity + "</div>";
+                                                                var urlMarker = "";
+                                                                if (site.siteType === 1) {
+                                                                    siteType = "E";
+                                                                    description = description + "<div>Type :" + siteType + "</div>" + "<div>Freq: " + site.frequenceNumber + "<div>Pol: " + site.polarisation;
+                                                                    var nodalSite = site.nodalSite;
+                                                                    if (nodalSite !== null) {
+                                                                        var flightPlanCoordinates = [
+                                                                            {lat: site.latitude, lng: site.longitude},
+                                                                            {lat: nodalSite.latitude, lng: nodalSite.longitude}
+                                                                        ];
+                                                                        var flightPath = new google.maps.Polyline({
+                                                                            path: flightPlanCoordinates,
+                                                                            geodesic: true,
+                                                                            strokeColor: '#FF0000',
+                                                                            strokeOpacity: 1.0,
+                                                                            strokeWeight: 2
+                                                                        });
+                                                                        flightPath.setMap(map);
+                                                                    }
+                                                                    urlMarker = '{{asset('bundles/app/images/antenne2.jpg')}}';
+                                                                } else {
+                                                                    description = description + "<div>Type :" + siteType + "</div>";
+                                                                    urlMarker = '{{asset('bundles/app/images/antenne1.jpg')}}';
+                                                                }
 
-                        })(marker, description);
-                        
-                    }
-                    console.log(response.sites);
-                    $('#map_loading').hide();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    $('#map_loading').hide();
-                }
-            });
-        });
+                                                                // Creating a marker and putting it on the map
+
+                                                                var image = {
+                                                                    url: urlMarker,
+                                                                    // This marker is 20 pixels wide by 32 pixels high.
+                                                                    size: new google.maps.Size(32, 45),
+                                                                    // The origin for this image is (0, 0).
+                                                                    origin: new google.maps.Point(0, 0),
+                                                                    // The anchor for this image is the base of the flagpole at (0, 32).
+                                                                    anchor: new google.maps.Point(18, 42)
+                                                                };
+                                                                // Shapes define the clickable region of the icon. The type defines an HTML
+                                                                // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+                                                                // The final coordinate closes the poly by connecting to the first coordinate.
+                                                                var shape = {
+                                                                    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+                                                                    type: 'poly'
+                                                                };
+
+                                                                var marker = new google.maps.Marker({
+                                                                    position: latLng,
+                                                                    map: map,
+                                                                    icon: image,
+                                                                    shape: shape,
+                                                                    title: site.siteName
+                                                                });
+                                                                var infoWindow = new google.maps.InfoWindow();
+                                                                // Creating a closure to retain the correct data 
+                                                                //Note how I pass the current data in the loop into the closure (marker, data)
+
+                                                                (function (marker, description) {
+                                                                    // Attaching a click event to the current marker
+                                                                    google.maps.event.addListener(marker, "click", function (e) {
+                                                                        infoWindow.setContent(description);
+                                                                        infoWindow.open(map, marker);
+                                                                    });
+
+                                                                })(marker, description);
+
+                                                            }
+                                                            console.log(response.sites);
+                                                            $('#map_loading').hide();
+                                                        },
+                                                        error: function (jqXHR, textStatus, errorThrown) {
+                                                            $('#map_loading').hide();
+                                                        }
+                                                    });
+                                                });
     </script>
 {% endblock %}

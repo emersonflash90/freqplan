@@ -33,18 +33,12 @@
             <div class='row'>
                 <div class="four wide column">
                     <div class="ui inverted vertical menu">
-                        {#<a class="item {% block active_item_map %}{% endblock %}" href="{{path('map_home')}}">
-                            <i class="map icon" ></i>
-                            <span>Map</span>
-                        </a>#}
+                        
                         <a id="sites_menu" class="item {% block active_item_sites %}{% endblock %}" href="{{path('sites_home')}}">
                             <i class="podcast icon" ></i>
                             <span>Sites</span>
                         </a>
-                        <a id="links_menu" class="item {% block active_item_links %}{% endblock %}" href="{{path('links_home')}}">
-                            <i class="linkify icon"></i>
-                            <span>Links</span>
-                        </a>
+                        
                         <a id="interferences_menu" class="item {% block active_item_interferences %}{% endblock %}" href="{{path('interferences_home')}}">
                             <i class="wifi icon"></i>
                             Interferences

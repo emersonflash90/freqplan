@@ -20,10 +20,13 @@
                 <i class="th list icon"></i>
             </a>
             <div class="right secondary menu">
-                <a class="upload popup icon item" data-content="Import a csv" data-tab="upload">
+                <a id="add_site_btn" class="write popup icon item add_site" data-content="Add a site" data-tab="add-site">
+                    <i class="write icon"></i>
+                </a>
+                <a id="import_sites_btn" class="upload popup icon item" data-content="Import csv" data-tab="upload">
                     <i class="upload icon"></i>
                 </a>
-                <a class="download popup icon item" data-content="Download csv" data-tab="download">
+                <a id="download_sites_btn" class="download popup icon item" data-content="Download csv" data-tab="download">
                     <i class="download icon"></i> 
                 </a>
             </div>
@@ -115,6 +118,37 @@
         </div>
     </div>
     {% block block_add_new %}
+        <div class="ui small modal" id="import_sites">
+            <i class="close icon"></i>
+            <div class="header">
+                Import from file
+            </div>
+            <div class="content">
+                <form id="import_sites_form" class="ui mini form" action="{{path('import_sites')}}" method="POST" enctype="multipart/form-data">
+{#                    <h4 class="ui dividing header">Site informations</h4>#}
+                    <div class="field">
+                        <input type="file" name="sites_file" accept=".csv,.xls,.xlsx">
+                    </div>
+                    <div class="field">
+                        <div id="server_error_message" class="ui small negative message" style="display:none">
+                            <i class="close icon"></i>
+                            <div id="server_error_content" class="header">Internal server error</div>
+                        </div>
+                        <div id="error_name_message" class="ui small error message" style="display: none">
+                            <i class="close icon"></i>
+                            <div id="error_name_header" class="header"></div>
+                            <ul id="error_name_list" class="list">
+
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="actions">
+                <a id="cancel_import_sites" class="ui black deny mini button">Cancel</a>
+                <a id="submit_import_sites" class="ui yellow mini button">Import</a>
+            </div>
+        </div>
         <div class="ui small modal" id="add_site">
             <i class="close icon"></i>
             <div class="header">
@@ -203,9 +237,9 @@
                 <a id="submit_site" class="ui yellow mini button">Save</a>
             </div>
         </div>
-        <button id="add_site_btn" class="float_button circular ui huge yellow icon button" data-tooltip="Add a site" data-position="top center" data-inverted="">
+        {#<button id="add_site_btn" class="float_button circular ui huge yellow icon button" data-tooltip="Add a site" data-position="top center" data-inverted="">
             <i class="write icon"></i>
-        </button>
+        </button>#}
     {% endblock %}
 
     {% block block_edit %}
@@ -332,12 +366,12 @@
                                                         },
                                                         success: function (response, textStatus, jqXHR) {
                                                             // Creating a new map and initialize it on a zone where you want to add a marker
-                                                            //lat and long of Cameroon
-                                                            var zoneLat = 6.00;
-                                                            var zoneLng = 12.00;
+                                                            //lat and long of Yaoundé
+                                                            var zoneLat = 3.8667;
+                                                            var zoneLng = 11.5167;
                                                             var map = new google.maps.Map(document.getElementById("map"), {
                                                                 center: new google.maps.LatLng(zoneLat, zoneLng),
-                                                                zoom: 6,
+                                                                zoom: 7,
                                                                 mapTypeId: google.maps.MapTypeId.ROADMAP
                                                             });
                                                             var sites = response.sites;
@@ -394,7 +428,7 @@
                                                                     position: latLng,
                                                                     map: map,
                                                                     icon: image,
-                                                                    shape: shape,
+                                                                    //shape: shape,
                                                                     title: site.siteName
                                                                 });
                                                                 var infoWindow = new google.maps.InfoWindow();

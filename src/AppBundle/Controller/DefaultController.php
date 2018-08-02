@@ -343,16 +343,16 @@ class DefaultController extends Controller {
             //regroupés par les 4 fréquences
             foreach ($otherEndSites as $otherEndSite) {
                 if ($otherEndSite->getFrequenceNumber() == "F1") {
-                    $azimutDifferencesF1[] = abs($otherEndSite->setAzimut() - $azimut);
+                    $azimutDifferencesF1[] = abs($otherEndSite->getAzimut() - $azimut);
                 }
                 if ($otherEndSite->getFrequenceNumber() == "F2") {
-                    $azimutDifferencesF2[] = abs($otherEndSite->setAzimut() - $azimut);
+                    $azimutDifferencesF2[] = abs($otherEndSite->getAzimut() - $azimut);
                 }
                 if ($otherEndSite->getFrequenceNumber() == "F3") {
-                    $azimutDifferencesF3[] = abs($otherEndSite->setAzimut() - $azimut);
+                    $azimutDifferencesF3[] = abs($otherEndSite->getAzimut() - $azimut);
                 }
                 if ($otherEndSite->getFrequenceNumber() == "F4") {
-                    $azimutDifferencesF4[] = abs($otherEndSite->setAzimut() - $azimut);
+                    $azimutDifferencesF4[] = abs($otherEndSite->getAzimut() - $azimut);
                 }
             }
             $azimutDifferences = array($azimutDifferencesF1, $azimutDifferencesF2, $azimutDifferencesF3, $azimutDifferencesF4);
@@ -433,6 +433,35 @@ class DefaultController extends Controller {
             return $view;
         }
     }
+    
+    /**
+     * @Rest\View(statusCode=Response::HTTP_CREATED)
+     * @Rest\Post("/import-sites-from-file", name="import_sites", options={ "method_prefix" = false, "expose" = true })
+     */
+    public function postImportSitesAction(Request $request) {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+        if ($request->isMethod("POST")) {
+            $file = $request->files->get('sites_file');
+
+            if ($file) {
+                //return $this->redirect($this->generateUrl('interferences_home'));
+                if (strtolower($file->guessExtension()) === "xls" || strtolower($file->guessExtension()) === "xlsx" || strtolower($file->guessExtension()) === "csv") {
+                    $name = "sites"."." . $file->guessExtension();
+                    $file = $file->move($this->getUploadRootDir(), $name);
+                    $result = "tmp";
+                    return $this->redirect($this->generateUrl('capex_home'));
+                    if (file_exists($this->getUploadRootDir() . "/" . $name)) {
+                        return $this->redirect($this->generateUrl('opex_home'));
+                        $result = $this->get('app.import_service')->importSiteFromFile($this->getUploadRootDir() . "/" . $name);
+                    }
+                }
+            } 
+        }
+        return $this->redirect($this->generateUrl('sites_home'));
+    }
+    
 
     /**
      * @Rest\View()
@@ -649,4 +678,7 @@ class DefaultController extends Controller {
         return $this->redirect($this->generateUrl('register_new_user'));
     }
 
+    private function getUploadRootDir() {
+        return '/../../../../web/uploads/importFiles';
+    }
 }

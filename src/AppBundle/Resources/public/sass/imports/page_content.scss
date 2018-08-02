@@ -1,4 +1,16 @@
 @import "imports/variables.scss";
+@media only screen and (max-width: 1280px){
+    .ui.page_content{
+        min-height: 50.2em;
+    }
+    .float_button.ui.yellow.button{
+        bottom: 100px;
+    }
+
+/*    .inverted.mini.menu.top_menu .container {
+        width: 1130px !important;
+    }*/
+}
 @media only screen and (max-width: 767px){
     .ui.page_content{
         .row{

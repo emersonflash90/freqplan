@@ -3,7 +3,7 @@ function add_site() {
     $('#site_type_add.ui.dropdown').dropdown({
         on: 'click'
     });
-    
+
     $('#add_site_btn').click(function () {
         $('#add_site.ui.modal').modal('setting', {
             autofocus: false,
@@ -11,6 +11,28 @@ function add_site() {
             closable: false
         });
         $('#add_site.ui.modal').modal('show');
+    });
+
+    $('#import_sites_btn').click(function () {
+        $('#import_sites.ui.modal').modal('setting', {
+            autofocus: false,
+            inverted: true,
+            closable: false
+        });
+        $('#import_sites.ui.modal').modal('show');
+    });
+
+    $('#submit_import_sites').click(function (e) {
+        e.preventDefault();
+        $('#server_error_message').hide();
+        $('#message_error').hide();
+        $('#message_success').hide();
+        $('#error_name_message').hide();
+        $('#error_name_message_edit').hide();
+        $('#submit_import_sites').addClass('disabled');
+        $('#cancel_import_sites').addClass('disabled');
+        $('#import_sites_form.ui.form').addClass('loading');
+        $('#import_sites_form.ui.form').submit();
     });
 
     $('#submit_site').click(function (e) {
@@ -69,7 +91,7 @@ function add_site() {
                                 prompt: "Veuillez selectionner la type du site"
                             }
                         ]
-                    }  
+                    }
                 },
                 inline: true,
                 on: 'change',
@@ -135,7 +157,7 @@ $(document).ready(function () {
     $('#cancel_add_site').click(function () {
 //        window.location.reload();
     });
-    
+
 });
 
 function edit_site(id) {
@@ -173,7 +195,7 @@ function edit_site(id) {
                 inverted: true,
                 closable: false
             });
-            
+
             $('.ui.dropdown').dropdown({
                 on: 'click'
             });
@@ -250,7 +272,7 @@ function execute_edit(id) {
                             }
                         ]
                     }
-                    
+
                 },
                 inline: true,
                 on: 'change',
@@ -353,7 +375,7 @@ function assign_node(id) {
                 inverted: true,
                 closable: false
             });
-            
+
             $('.ui.dropdown').dropdown({
                 on: 'click'
             });

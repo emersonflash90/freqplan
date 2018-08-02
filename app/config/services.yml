@@ -47,4 +47,9 @@ services:
               arguments: [1]
             - method: setCircularReferenceHandler
               arguments: ["@circular_reference_handler"]
+              
+    app.import_service:
+        class: AppBundle\Services\ImportService
+        public: true
+        arguments: ["@doctrine.orm.entity_manager"]
     

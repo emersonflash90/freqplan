@@ -544,29 +544,29 @@ class DefaultController extends Controller {
 
     /**
      * @Rest\View()
-     * @Rest\Get("/map" , name="map_home", options={ "method_prefix" = false, "expose" = true })
+     * @Rest\Get("/help" , name="help", options={ "method_prefix" = false, "expose" = true })
      * @param Request $request
      */
-    public function mapAction(Request $request) {
+    public function helpAction(Request $request) {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
         // replace this example code with whatever you need
-        return $this->render('map/index.html.twig', array(
+        return $this->render('help/index.html.twig', array(
         ));
     }
 
     /**
      * @Rest\View()
-     * @Rest\Get("/links" , name="links_home", options={ "method_prefix" = false, "expose" = true })
+     * @Rest\Get("/about" , name="about", options={ "method_prefix" = false, "expose" = true })
      * @param Request $request
      */
-    public function linksAction(Request $request) {
+    public function aboutAction(Request $request) {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
         // replace this example code with whatever you need
-        return $this->render('links/index.html.twig', array(
+        return $this->render('about/index.html.twig', array(
         ));
     }
 

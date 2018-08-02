@@ -134,15 +134,13 @@ $(document).ready(function () {
 //                ;
 //    });
 //    
+
 //    $('#add_site_btn').click(function (e) {
 //        e.preventDefault();
 //        $('#modal_add_site.ui.modal')
 //                .modal('show')
 //                ;
 //    });
-
-    
-
 });
 
 function edit_site(id_site) {
